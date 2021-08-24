@@ -56,15 +56,8 @@ function init() {
     target = document.getElementById("output");
 
     // チェックボックスの配列
-    checkboxes = [
-        document.getElementById('check1'),
-        document.getElementById('check2'),
-        document.getElementById('check3'),
-        document.getElementById('check4'),
-        document.getElementById('check5'),
-        document.getElementById('check6'),
-        document.getElementById('check7')
-    ];
+    // クラス名で取得
+    checkboxes = document.getElementsByClassName("cbc1");
 
     // デフォルト値の設定
     checkboxes[2].checked = true;
