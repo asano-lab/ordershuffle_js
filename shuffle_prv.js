@@ -75,11 +75,11 @@ function draw() {
     let i;
     target.innerHTML = "";
 
-    // 背景 (毎回上書きする必要はなさそう)
+    // 背景の描画
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
     ctx.fillRect(0, 0, SCALE * 19, SCALE * 21);
 
-    // 机の色分け
+    // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
         if (checkboxes[i].checked) {
             ctx.fillStyle = "rgb(100, 100, 0)"
@@ -89,7 +89,7 @@ function draw() {
         ctx.fillRect(COO_SIZ[i][0], COO_SIZ[i][1], COO_SIZ[i][2], COO_SIZ[i][3]);
     }
 
-    // 各机にアルファベットを割り振りたい
+    // 各机にアルファベットを割り振る
     ctx.font = String(FONTSIZE * 0.5) + "px serif";
     ctx.fillStyle = "rgb(0, 0, 0)";
     for (i = 0; i < MAX_POPULATION; i++) {
