@@ -47,8 +47,6 @@ let orders_name;
 // グローバルのイテレータ変数
 let g_itr;
 
-let initial;
-
 // 最初に一度だけ実行
 function init() {
     initial = true;
@@ -79,10 +77,7 @@ function draw() {
 
     // 背景 (毎回上書きする必要はなさそう)
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
-
-    if (initial) {
-        ctx.fillRect(0, 0, SCALE * 19, SCALE * 21);
-    }
+    ctx.fillRect(0, 0, SCALE * 19, SCALE * 21);
 
     // 机の色分け
     for (i = 0; i < MAX_POPULATION; i++) {
@@ -91,9 +86,7 @@ function draw() {
         } else {
             ctx.fillStyle = "rgb(200, 200, 0)"
         }
-        if (initial) {
-            ctx.fillRect(COO_SIZ[i][0], COO_SIZ[i][1], COO_SIZ[i][2], COO_SIZ[i][3]);
-        }
+        ctx.fillRect(COO_SIZ[i][0], COO_SIZ[i][1], COO_SIZ[i][2], COO_SIZ[i][3]);
     }
 
     // 各机にアルファベットを割り振りたい
@@ -112,6 +105,7 @@ function draw() {
     setTimeout(drawOrders, 200);
 }
 
+// 順番を描画する (時間差あり)
 function drawOrders() {
     let coo = TXT_COO[attendees[orders_num[g_itr]]];
     ctx.fillText(g_itr + 1, coo[0], coo[1]);
@@ -140,7 +134,7 @@ function OnButtonClick() {
     attendees = [];
     for (i = 0; i < MAX_POPULATION; i++) {
         if (!checkboxes[i].checked) {
-            population += !checkboxes[i].checked;
+            population += 1;
             attendees.push(i);
         }
     }
