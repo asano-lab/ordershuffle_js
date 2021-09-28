@@ -107,6 +107,7 @@ function init() {
 
 // 背景描画
 function drawBackGround() {
+    let i;
     // 背景の描画
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
     ctx.fillRect(0, 0, SCALE * 19, SCALE * 21);
@@ -129,8 +130,7 @@ function drawBackGround() {
     }
 }
 
-function draw() {
-    let i;
+function startDrawOrders() {
     target.innerHTML = "";
     drawBackGround();
 
@@ -198,5 +198,5 @@ function OnButtonClick() {
     for (i = 0; i < population; i++) {
         orders_name.push(NAMES[attendees[orders_num[i]]]);
     }
-    draw();
+    startDrawOrders();
 }
