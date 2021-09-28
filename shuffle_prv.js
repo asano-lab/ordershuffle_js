@@ -167,7 +167,7 @@ function drawOrders() {
 
 // ボタン押下時に実行する関数
 function OnButtonClick() {
-    let i, j;
+    let i, j, r;
 
     // シードの自動設定 (時刻)
     if (!man_seed) {
@@ -181,17 +181,23 @@ function OnButtonClick() {
     // 人数のカウントと出席者の取得
     population = 0;
     attendees = [];
+    let cp_attendees = [];
+    
     for (i = 0; i < MAX_POPULATION; i++) {
         if (!checkboxes[i].checked) {
             population += 1;
             attendees.push(i);
+            cp_attendees.push(i);
         }
     }
     // ランダムに順番を決める
     orders_num = [];
     for (i = population; i > 0; i--) {
-        // orders_num.push(getRandomInt(0, i));
+        r = random.nextInt(0, i);
+        console.log(cp_attendees.splice(r, 1));
+        console.log(cp_attendees);
         orders_num.push(random.nextInt(0, i));
+
     }
     // 重複排除
     for (i = population - 1; i > 0; i--) {
