@@ -34,6 +34,7 @@ let canvas;
 let target;
 let ctx;
 
+let shuffle_button;
 let checkboxes;
 
 let population;
@@ -91,6 +92,7 @@ function init() {
     initial = true;
     canvas = document.getElementById('tutorial');
     target = document.getElementById("output");
+    shuffle_button = document.getElementById("button1");
 
     // チェックボックスの配列
     // クラス名で取得
@@ -161,12 +163,15 @@ function drawOrders() {
     if (g_itr < population) {
         setTimeout(drawOrders, 200);
         // console.log(g_itr);
+    } else {
+        shuffle_button.disabled = false;
     }
     target.innerHTML = orders_name.slice(0, g_itr);
 }
 
 // ボタン押下時に実行する関数
 function OnButtonClick() {
+    shuffle_button.disabled = true;
     let i, r;
 
     // シードの自動設定 (時刻)
