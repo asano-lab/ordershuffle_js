@@ -50,6 +50,8 @@ let orders_name;
 // グローバルのイテレータ変数
 let g_itr;
 
+let man_seed;
+
 // シード付き乱数生成
 // 参考：https://sbfl.net/blog/2017/06/01/javascript-reproducible-random/
 class Random {
@@ -85,16 +87,19 @@ function init() {
     initial = true;
     canvas = document.getElementById('tutorial');
     target = document.getElementById("output");
-    input_num = document.getElementById("inum1");
 
     // チェックボックスの配列
     // クラス名で取得
     checkboxes = document.getElementsByClassName("cbc1");
+    seed_check = document.getElementById("check8");
+    input_num = document.getElementById("inum1");
 
     // デフォルト値の設定
     checkboxes[2].checked = true;
     checkboxes[5].checked = true;
     checkboxes[6].checked = true;
+    
+    man_seed = false;
 
     if (canvas.getContext) {
         ctx = canvas.getContext('2d');
@@ -169,7 +174,7 @@ function OnButtonClick() {
     let i, j;
 
     const seed = input_num.value;
-    const random = new Random;
+    const random = new Random(seed);
 
     // 人数のカウントと出席者の取得
     population = 0;
@@ -199,4 +204,15 @@ function OnButtonClick() {
         orders_name.push(NAMES[attendees[orders_num[i]]]);
     }
     startDrawOrders();
+}
+
+// シード設定の変更
+function onSeedCheckClick() {
+    if (seed_check.checked) {
+        input_num.disabled = false;
+        man_seed = true;
+    } else {
+        input_num.disabled = true;
+        man_seed = false;
+    }
 }
