@@ -195,9 +195,6 @@ function OnButtonClick() {
     for (i = population; i > 0; i--) {
         r = random.nextInt(0, i);
         orders_num = orders_num.concat(cp_attendees.splice(r, 1));
-        // orders_num.push(cp_attendees.splice(r, 1)[0]);
-        console.log(cp_attendees);
-        console.log(orders_num);
     }
 
     orders_name = []
