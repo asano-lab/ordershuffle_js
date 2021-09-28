@@ -155,7 +155,7 @@ function startDrawOrders() {
 
 // 順番を描画する (時間差あり)
 function drawOrders() {
-    let coo = TXT_COO[attendees[orders_num[g_itr]]];
+    let coo = TXT_COO[orders_num[g_itr]];
     ctx.fillText(g_itr + 1, coo[0], coo[1]);
     if (g_itr < population - 1) {
         g_itr++;
@@ -194,22 +194,15 @@ function OnButtonClick() {
     orders_num = [];
     for (i = population; i > 0; i--) {
         r = random.nextInt(0, i);
-        console.log(cp_attendees.splice(r, 1));
+        orders_num = orders_num.concat(cp_attendees.splice(r, 1));
+        // orders_num.push(cp_attendees.splice(r, 1)[0]);
         console.log(cp_attendees);
-        orders_num.push(random.nextInt(0, i));
+        console.log(orders_num);
+    }
 
-    }
-    // 重複排除
-    for (i = population - 1; i > 0; i--) {
-        for (j = i - 1; j >= 0; j--) {
-            if (orders_num[j] <= orders_num[i]) {
-                orders_num[i]++;
-            }
-        }
-    }
     orders_name = []
     for (i = 0; i < population; i++) {
-        orders_name.push(NAMES[attendees[orders_num[i]]]);
+        orders_name.push(NAMES[orders_num[i]]);
     }
     startDrawOrders();
 }
