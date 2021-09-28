@@ -135,6 +135,7 @@ function drawBackGround() {
     }
 }
 
+// 順番の描画開始
 function startDrawOrders() {
     target.innerHTML = "";
     drawBackGround();
@@ -160,18 +161,15 @@ function drawOrders() {
     }
 }
 
-// ある範囲の整数乱数を取得
-// min は含むが max は含まない
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    // The maximum is exclusive and the minimum is inclusive
-    return Math.floor(Math.random() * (max - min) + min);
-  }
-
 // ボタン押下時に実行する関数
 function OnButtonClick() {
     let i, j;
+
+    // シードの自動設定 (時刻)
+    if (!man_seed) {
+        const now = new Date;
+        input_num.value = now.getTime();
+    }
 
     const seed = input_num.value;
     const random = new Random(seed);
