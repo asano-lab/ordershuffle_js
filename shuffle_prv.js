@@ -36,6 +36,9 @@ let checkboxes;
 
 let population;
 
+// シード値入力欄
+let input_num;
+
 // 出席者
 let attendees;
 
@@ -47,11 +50,42 @@ let orders_name;
 // グローバルのイテレータ変数
 let g_itr;
 
+// シード付き乱数生成
+// 参考：https://sbfl.net/blog/2017/06/01/javascript-reproducible-random/
+class Random {
+    constructor(seed = 88675123) {
+        this.x = 123456789;
+        this.y = 362436069;
+        this.z = 521288629;
+        this.w = seed;
+    }
+    
+    // XorShift
+    // 乱数生成アルゴリズム
+    next() {
+        let t;
+
+        t = this.x ^ (this.x << 11);
+        this.x = this.y;
+        this.y = this.z;
+        this.z = this.w;
+        return this.w = (this.w ^ (this.w >>> 19)) ^ (t ^ (t >>> 8)); 
+    }
+
+    // 範囲内の整数乱数を生成
+    // minは含むがmaxは含まない
+    nextInt(min, max) {
+        const r = Math.abs(this.next());
+        return min + (r % (max - min));
+    }
+}
+
 // 最初に一度だけ実行
 function init() {
     initial = true;
     canvas = document.getElementById('tutorial');
     target = document.getElementById("output");
+    input_num = document.getElementById("inum1");
 
     // チェックボックスの配列
     // クラス名で取得
@@ -129,6 +163,10 @@ function getRandomInt(min, max) {
 // ボタン押下時に実行する関数
 function OnButtonClick() {
     let i, j;
+
+    const seed = input_num.value;
+    const random = new Random;
+
     // 人数のカウントと出席者の取得
     population = 0;
     attendees = [];
@@ -141,7 +179,8 @@ function OnButtonClick() {
     // ランダムに順番を決める
     orders_num = [];
     for (i = population; i > 0; i--) {
-        orders_num.push(getRandomInt(0, i));
+        // orders_num.push(getRandomInt(0, i));
+        orders_num.push(random.nextInt(0, i));
     }
     // 重複排除
     for (i = population - 1; i > 0; i--) {
