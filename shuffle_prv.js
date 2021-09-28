@@ -28,6 +28,8 @@ const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
 
 const FONTSIZE = SCALE * 1.6
 
+const DEFAULT_ABSENTEES = [5];
+
 let canvas;
 let target;
 let ctx;
@@ -84,6 +86,8 @@ class Random {
 
 // 最初に一度だけ実行
 function init() {
+    let i;
+
     initial = true;
     canvas = document.getElementById('tutorial');
     target = document.getElementById("output");
@@ -95,9 +99,9 @@ function init() {
     input_num = document.getElementById("inum1");
 
     // デフォルト値の設定
-    checkboxes[2].checked = true;
-    checkboxes[5].checked = true;
-    checkboxes[6].checked = true;
+    for (i = 0; i < DEFAULT_ABSENTEES.length; i++) {
+        checkboxes[DEFAULT_ABSENTEES[i]].checked = true;
+    }
     
     man_seed = false;
 
