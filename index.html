@@ -20,7 +20,9 @@
       <label><input type="checkbox" id="check6" class="cbc1">F</label>
       <label><input type="checkbox" id="check7" class="cbc1">G</label>
     </div>
-    <input type="button" value="Shuffle" onclick="OnButtonClick();"/><br />
+    <input type="button" value="Shuffle" onclick="OnButtonClick();"/>
+    <label><input type="checkbox" id="check8" onclick="onSeedCheckClick();">シード指定</label>
+    <input type="number" id="inum1" value="123" disabled><br>
     <canvas id="tutorial" width="525" height="525"></canvas>
     <div id="output"></div>
   </body>
