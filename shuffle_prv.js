@@ -156,13 +156,13 @@ function startDrawOrders() {
 // 順番を描画する (時間差あり)
 function drawOrders() {
     let coo = TXT_COO[orders_num[g_itr]];
-    ctx.fillText(g_itr + 1, coo[0], coo[1]);
-    if (g_itr < population - 1) {
-        g_itr++;
+    g_itr++;
+    ctx.fillText(g_itr, coo[0], coo[1]);
+    if (g_itr < population) {
         setTimeout(drawOrders, 200);
-    } else {
-        target.innerHTML = orders_name;
+        // console.log(g_itr);
     }
+    target.innerHTML = orders_name.slice(0, g_itr);
 }
 
 // ボタン押下時に実行する関数
