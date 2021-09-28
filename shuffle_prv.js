@@ -100,15 +100,13 @@ function init() {
         ctx = canvas.getContext('2d');
         // ctx.globalCompositeOperation = "source-in";
         ctx.globalCompositeOperation = "source-over";
-        draw();
+        drawBackGround();
         initial = false;
     }
 }
 
-function draw() {
-    let i;
-    target.innerHTML = "";
-
+// 背景描画
+function drawBackGround() {
     // 背景の描画
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
     ctx.fillRect(0, 0, SCALE * 19, SCALE * 21);
@@ -129,6 +127,12 @@ function draw() {
     for (i = 0; i < MAX_POPULATION; i++) {
         ctx.fillText(NAMES[i], COO_SIZ[i][0] + SCALE * 0.1, COO_SIZ[i][1] + SCALE * 0.8);
     }
+}
+
+function draw() {
+    let i;
+    target.innerHTML = "";
+    drawBackGround();
 
     // フォントの設定
     ctx.font = String(FONTSIZE) + "px serif";
