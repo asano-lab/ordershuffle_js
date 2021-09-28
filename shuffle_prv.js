@@ -80,8 +80,7 @@ class Random {
     // 範囲内の整数乱数を生成
     // minは含むがmaxは含まない
     nextInt(min, max) {
-        const r = Math.abs(this.next());
-        return min + (r % (max - min));
+        return min + (Math.abs(this.next()) % (max - min));
     }
 }
 
