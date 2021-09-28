@@ -167,7 +167,7 @@ function drawOrders() {
 
 // ボタン押下時に実行する関数
 function OnButtonClick() {
-    let i, j, r;
+    let i, r;
 
     // シードの自動設定 (時刻)
     if (!man_seed) {
