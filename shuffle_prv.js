@@ -177,8 +177,11 @@ function OnButtonClick() {
     if (!man_seed) {
         const now = new Date;
         const t = now.getTime();
-        console.log(t.toString(16));
-        input_num.value = t;
+        console.log(Math.log2(t));
+        let s = t / 3 | 0;
+        s &= 0x7fffffff;
+        console.log(s);
+        input_num.value = s;
     }
 
     const seed = input_num.value;
