@@ -176,7 +176,9 @@ function OnButtonClick() {
     // シードの自動設定 (時刻)
     if (!man_seed) {
         const now = new Date;
-        input_num.value = now.getTime();
+        const t = now.getTime();
+        console.log(t >>> 32);
+        input_num.value = t;
     }
 
     const seed = input_num.value;
