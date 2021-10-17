@@ -68,9 +68,7 @@ class Random {
     // XorShift
     // 乱数生成アルゴリズム
     next() {
-        let t;
-
-        t = this.x ^ (this.x << 11);
+        const t = this.x ^ (this.x << 11);
         this.x = this.y;
         this.y = this.z;
         this.z = this.w;
@@ -88,7 +86,6 @@ class Random {
 function init() {
     let i;
 
-    initial = true;
     canvas = document.getElementById('tutorial');
     target = document.getElementById("output");
     shuffle_button = document.getElementById("button1");
@@ -111,7 +108,6 @@ function init() {
         // ctx.globalCompositeOperation = "source-in";
         ctx.globalCompositeOperation = "source-over";
         drawBackGround();
-        initial = false;
     }
 }
 
