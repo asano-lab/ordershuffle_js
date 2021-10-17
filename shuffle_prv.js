@@ -175,12 +175,9 @@ function OnButtonClick() {
 
     // シードの自動設定 (時刻)
     if (!man_seed) {
-        const now = new Date;
-        const t = now.getTime();
-        console.log(Math.log2(t));
-        let s = t / 3 | 0;
-        s &= 0x7fffffff;
-        console.log(s);
+        const t = (new Date).getTime();
+        const s = (t / 13 | 0) & 0x7fffffff;
+        // console.log(s);
         input_num.value = s;
     }
 
