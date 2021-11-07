@@ -3,24 +3,24 @@ const MAX_POPULATION = 7;
 
 // 机の位置と大きさ
 const COO_SIZ = [
-    [         0,          0, SCALE *  3, SCALE *  5],
-    [         0, SCALE *  6, SCALE *  3, SCALE *  5],
-    [         0, SCALE * 12, SCALE *  3, SCALE *  5],
-    [SCALE *  4, SCALE * 18, SCALE *  5, SCALE *  3],
-    [SCALE * 10, SCALE * 18, SCALE *  5, SCALE *  3],
-    [SCALE * 16, SCALE *  6, SCALE *  3, SCALE *  5],
-    [SCALE * 16,          0, SCALE *  3, SCALE *  5]
+    [0, 0, SCALE * 3, SCALE * 5],
+    [0, SCALE * 6, SCALE * 3, SCALE * 5],
+    [0, SCALE * 12, SCALE * 3, SCALE * 5],
+    [SCALE * 4, SCALE * 18, SCALE * 5, SCALE * 3],
+    [SCALE * 10, SCALE * 18, SCALE * 5, SCALE * 3],
+    [SCALE * 16, SCALE * 6, SCALE * 3, SCALE * 5],
+    [SCALE * 16, 0, SCALE * 3, SCALE * 5]
 ];
 
 // テキストの位置
 const TXT_COO = [
-    [SCALE     , SCALE *  3],
-    [SCALE     , SCALE *  9],
-    [SCALE     , SCALE * 15],
-    [SCALE *  6, SCALE * 20],
+    [SCALE, SCALE * 3],
+    [SCALE, SCALE * 9],
+    [SCALE, SCALE * 15],
+    [SCALE * 6, SCALE * 20],
     [SCALE * 12, SCALE * 20],
-    [SCALE * 17, SCALE *  9],
-    [SCALE * 17, SCALE *  3]
+    [SCALE * 17, SCALE * 9],
+    [SCALE * 17, SCALE * 3]
 ];
 
 // 机に割り振るアルファベット
@@ -64,7 +64,7 @@ class Random {
         this.z = 521288629;
         this.w = seed;
     }
-    
+
     // XorShift
     // 乱数生成アルゴリズム
     next() {
@@ -72,7 +72,7 @@ class Random {
         this.x = this.y;
         this.y = this.z;
         this.z = this.w;
-        return this.w = (this.w ^ (this.w >>> 19)) ^ (t ^ (t >>> 8)); 
+        return this.w = (this.w ^ (this.w >>> 19)) ^ (t ^ (t >>> 8));
     }
 
     // 範囲内の整数乱数を生成
@@ -92,15 +92,10 @@ function init() {
 
     // チェックボックスの配列
     // クラス名で取得
-    checkboxes = document.getElementsByClassName("cbc1");
+    checkboxes = document.getElementsByClassName("form-check-input");
     seed_check = document.getElementById("check8");
     input_num = document.getElementById("inum1");
 
-    // デフォルト値の設定
-    for (i = 0; i < DEFAULT_ABSENTEES.length; i++) {
-        checkboxes[DEFAULT_ABSENTEES[i]].checked = true;
-    }
-    
     man_seed = false;
 
     if (canvas.getContext) {
@@ -121,9 +116,10 @@ function drawBackGround() {
     // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
         if (checkboxes[i].checked) {
-            ctx.fillStyle = "rgb(100, 100, 0)"
-        } else {
             ctx.fillStyle = "rgb(200, 200, 0)"
+
+        } else {
+            ctx.fillStyle = "rgb(100, 100, 0)"
         }
         ctx.fillRect(COO_SIZ[i][0], COO_SIZ[i][1], COO_SIZ[i][2], COO_SIZ[i][3]);
     }
@@ -168,9 +164,8 @@ function drawOrders() {
 function OnButtonClick() {
     shuffle_button.disabled = true;
     let i, r;
-
     // シードの自動設定 (時刻)
-    if (!man_seed) {
+    if (!(man_seed && input_num.value)) {
         const t = (new Date).getTime();
         const s = (t / 13 | 0) & 0x7fffffff;
         // console.log(s);
@@ -184,9 +179,9 @@ function OnButtonClick() {
     population = 0;
     attendees = [];
     let cp_attendees = [];
-    
+
     for (i = 0; i < MAX_POPULATION; i++) {
-        if (!checkboxes[i].checked) {
+        if (checkboxes[i].checked) {
             population += 1;
             attendees.push(i);
             cp_attendees.push(i);

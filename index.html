@@ -1,29 +1,86 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8"/>
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>発表の順番決め</title>
-    <script src="./shuffle_prv.js">
-    </script>
-    <!-- <style type="text/css">
-      canvas {border: 1px solid black;}
-    </style> -->
-  </head>
-  <body onload="init();">
-    <h1 style="font-size:15px">発表しない人にチェックを入れる</h1>
-    <div>
-      <label><input type="checkbox" id="check1" class="cbc1">A</label>
-      <label><input type="checkbox" id="check2" class="cbc1">B</label>
-      <label><input type="checkbox" id="check3" class="cbc1">C</label>
-      <label><input type="checkbox" id="check4" class="cbc1">D</label>
-      <label><input type="checkbox" id="check5" class="cbc1">E</label>
-      <label><input type="checkbox" id="check6" class="cbc1">F</label>
-      <label><input type="checkbox" id="check7" class="cbc1">G</label>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+</head>
+
+<body onload="init();" class="mt-4">
+    <div class="row">
+        <div class="col">
+            <div class="container mb-4">
+                <h3>
+                    発表の順番決め
+                    <small class="text-muted">発表する人を選びシャッフルする</small>
+                </h3>
+
+                <form>
+                    <label for="presenters" class="form-label"><i class="fas fa-users"></i> 発表する人</label>
+                    <div class="mb-3" id="presenters">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="check1" checked>
+                            <label class="form-check-label" for="inlineCheckbox1">A</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="check2" checked>
+                            <label class="form-check-label" for="inlineCheckbox2">B</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="check3" checked>
+                            <label class="form-check-label" for="inlineCheckbox3">C</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="check4" checked>
+                            <label class="form-check-label" for="inlineCheckbox4">D</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="check5" checked>
+                            <label class="form-check-label" for="inlineCheckbox5">E</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="check6">
+                            <label class="form-check-label" for="inlineCheckbox6">F</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="check7" checked>
+                            <label class="form-check-label" for="inlineCheckbox7">G</label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="check8" onclick="onSeedCheckClick();">
+                        <label for="inum1" class="form-label"><i class="fas fa-seedling"></i> シード値を指定</label>
+                        <input type="number" class="form-control" id="inum1" disabled>
+                        <div id="seedHelp" class="form-text">指定しなければランダムシード値</div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="button1" onclick="OnButtonClick();"><i
+                            class="fas fa-random"></i> シャッフル</button>
+                </form>
+            </div>
+        </div>
+        <div class="col">
+            <canvas id="tutorial" width="525" height="525"></canvas>
+            <div id="output"></div>
+        </div>
     </div>
-    <input type="button" value="Shuffle" id="button1" onclick="OnButtonClick();"/>
-    <label><input type="checkbox" id="check8" onclick="onSeedCheckClick();">シード指定</label>
-    <input type="number" id="inum1" value="123" disabled><br>
-    <canvas id="tutorial" width="525" height="525"></canvas>
-    <div id="output"></div>
-  </body>
+    </div>
+
+    </div>
+
+    <script src="./shuffle_prv.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
