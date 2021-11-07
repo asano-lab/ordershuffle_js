@@ -84,8 +84,6 @@ class Random {
 
 // 最初に一度だけ実行
 function init() {
-    let i;
-
     canvas = document.getElementById('tutorial');
     target = document.getElementById("output");
     shuffle_button = document.getElementById("button1");
@@ -117,7 +115,6 @@ function drawBackGround() {
     for (i = 0; i < MAX_POPULATION; i++) {
         if (checkboxes[i].checked) {
             ctx.fillStyle = "rgb(200, 200, 0)"
-
         } else {
             ctx.fillStyle = "rgb(100, 100, 0)"
         }
@@ -160,8 +157,8 @@ function drawOrders() {
     target.innerHTML = orders_name.slice(0, g_itr);
 }
 
-// ボタン押下時に実行する関数
-function OnButtonClick() {
+// シャッフルボタン押下時に実行する関数
+function onShuffleClick() {
     shuffle_button.disabled = true;
     let i, r;
     // シードの自動設定 (時刻)
