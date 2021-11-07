@@ -10,50 +10,49 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
 </head>
 
-<body onload="init();" class="mt-4">
+<body onload="init();" class="mt-3">
     <div class="row">
         <div class="col">
-            <div class="container mb-4">
+            <div class="container mb-2">
                 <h3>
                     発表の順番決め
                     <small class="text-muted">発表する人を選びシャッフルする</small>
                 </h3>
                 <form>
                     <label for="presenters" class="form-label"><i class="fas fa-users"></i> 発表する人</label>
-                    <div class="mb-3" id="presenters">
+                    <div class="form-check mb-1" id="presenters">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="check1" checked>
-                            <label class="form-check-label" for="inlineCheckbox1">A</label>
+                            <label class="form-check-label" for="check1">A</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="check2" checked>
-                            <label class="form-check-label" for="inlineCheckbox2">B</label>
+                            <label class="form-check-label" for="check2">B</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="check3" checked>
-                            <label class="form-check-label" for="inlineCheckbox3">C</label>
+                            <label class="form-check-label" for="check3">C</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="check4" checked>
-                            <label class="form-check-label" for="inlineCheckbox4">D</label>
+                            <label class="form-check-label" for="check4">D</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="check5" checked>
-                            <label class="form-check-label" for="inlineCheckbox5">E</label>
+                            <label class="form-check-label" for="check5">E</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="check6">
-                            <label class="form-check-label" for="inlineCheckbox6">F</label>
+                            <label class="form-check-label" for="check6">F</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="check7" checked>
-                            <label class="form-check-label" for="inlineCheckbox7">G</label>
+                            <label class="form-check-label" for="check7">G</label>
                         </div>
-
                     </div>
-                    <div class="form-check mb-3">
+                    <div class="form-check mb-1">
                         <input type="checkbox" class="form-check-input" id="check8" onclick="onSeedCheckClick();">
-                        <label for="inum1" class="form-label"><i class="fas fa-seedling"></i> シード値を指定</label>
+                        <label for="inum1" class="form-label"><i class="fas fa-seedling"></i> シード値を指定する</label>
                         <input type="number" class="form-control" id="inum1" disabled>
                         <div id="seedHelp" class="form-text">指定しない場合、時刻がシード値になる</div>
                     </div>

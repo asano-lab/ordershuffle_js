@@ -165,7 +165,7 @@ function OnButtonClick() {
     shuffle_button.disabled = true;
     let i, r;
     // シードの自動設定 (時刻)
-    if (!(man_seed && input_num.value)) {
+    if (!man_seed || !input_num.value) {
         const t = (new Date).getTime();
         const s = (t / 13 | 0) & 0x7fffffff;
         // console.log(s);
