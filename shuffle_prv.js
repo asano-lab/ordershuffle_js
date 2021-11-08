@@ -6,8 +6,8 @@ const COO_SIZ = [
     [0, 0, SCALE * 3, SCALE * 5],
     [0, SCALE * 6, SCALE * 3, SCALE * 5],
     [0, SCALE * 12, SCALE * 3, SCALE * 5],
-    [SCALE * 4, SCALE * 18, SCALE * 5, SCALE * 3],
-    [SCALE * 10, SCALE * 18, SCALE * 5, SCALE * 3],
+    [SCALE * 4, SCALE * 14, SCALE * 5, SCALE * 3],
+    [SCALE * 10, SCALE * 14, SCALE * 5, SCALE * 3],
     [SCALE * 16, SCALE * 6, SCALE * 3, SCALE * 5],
     [SCALE * 16, 0, SCALE * 3, SCALE * 5]
 ];
@@ -17,8 +17,8 @@ const TXT_COO = [
     [SCALE, SCALE * 3],
     [SCALE, SCALE * 9],
     [SCALE, SCALE * 15],
-    [SCALE * 6, SCALE * 20],
-    [SCALE * 12, SCALE * 20],
+    [SCALE * 6, SCALE * 16],
+    [SCALE * 12, SCALE * 16],
     [SCALE * 17, SCALE * 9],
     [SCALE * 17, SCALE * 3]
 ];
@@ -27,8 +27,6 @@ const TXT_COO = [
 const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
 
 const FONTSIZE = SCALE * 1.6
-
-const DEFAULT_ABSENTEES = [5];
 
 let canvas;
 let target;
@@ -109,7 +107,7 @@ function drawBackGround() {
     let i;
     // 背景の描画
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
-    ctx.fillRect(0, 0, SCALE * 19, SCALE * 21);
+    ctx.fillRect(0, 0, SCALE * 19, SCALE * 17);
 
     // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
@@ -150,7 +148,6 @@ function drawOrders() {
     ctx.fillText(g_itr, coo[0], coo[1]);
     if (g_itr < population) {
         setTimeout(drawOrders, 200);
-        // console.log(g_itr);
     } else {
         shuffle_button.disabled = false;
     }
@@ -162,11 +159,14 @@ function onShuffleClick() {
     shuffle_button.disabled = true;
     let i, r;
     // シードの自動設定 (時刻)
-    if (!man_seed || !input_num.value) {
+    if (!man_seed) {
         const t = (new Date).getTime();
         const s = (t / 13 | 0) & 0x7fffffff;
-        // console.log(s);
         input_num.value = s;
+    }
+    // 未入力の場合は0
+    else if (!input_num.value) {
+        input_num.value = 0;
     }
 
     const seed = input_num.value;
