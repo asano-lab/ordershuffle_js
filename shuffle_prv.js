@@ -6,8 +6,8 @@ const COO_SIZ = [
     [0, 0, SCALE * 3, SCALE * 5],
     [0, SCALE * 6, SCALE * 3, SCALE * 5],
     [0, SCALE * 12, SCALE * 3, SCALE * 5],
-    [SCALE * 4, SCALE * 14, SCALE * 5, SCALE * 3],
-    [SCALE * 10, SCALE * 14, SCALE * 5, SCALE * 3],
+    [SCALE * 4, SCALE * 16, SCALE * 5, SCALE * 3],
+    [SCALE * 10, SCALE * 16, SCALE * 5, SCALE * 3],
     [SCALE * 16, SCALE * 6, SCALE * 3, SCALE * 5],
     [SCALE * 16, 0, SCALE * 3, SCALE * 5]
 ];
@@ -17,8 +17,8 @@ const TXT_COO = [
     [SCALE, SCALE * 3],
     [SCALE, SCALE * 9],
     [SCALE, SCALE * 15],
-    [SCALE * 6, SCALE * 16],
-    [SCALE * 12, SCALE * 16],
+    [SCALE * 6, SCALE * 18],
+    [SCALE * 12, SCALE * 18],
     [SCALE * 17, SCALE * 9],
     [SCALE * 17, SCALE * 3]
 ];
@@ -80,34 +80,12 @@ class Random {
     }
 }
 
-// 最初に一度だけ実行
-function init() {
-    canvas = document.getElementById('tutorial');
-    target = document.getElementById("output");
-    shuffle_button = document.getElementById("button1");
-
-    // チェックボックスの配列
-    // クラス名で取得
-    checkboxes = document.getElementsByClassName("form-check-input");
-    seed_check = document.getElementById("check8");
-    input_num = document.getElementById("inum1");
-
-    man_seed = false;
-
-    if (canvas.getContext) {
-        ctx = canvas.getContext('2d');
-        // ctx.globalCompositeOperation = "source-in";
-        ctx.globalCompositeOperation = "source-over";
-        drawBackGround();
-    }
-}
-
 // 背景描画
 function drawBackGround() {
     let i;
     // 背景の描画
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
-    ctx.fillRect(0, 0, SCALE * 19, SCALE * 17);
+    ctx.fillRect(0, 0, SCALE * 19, SCALE * 19);
 
     // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
@@ -207,4 +185,23 @@ function onSeedCheckClick() {
         input_num.disabled = true;
         man_seed = false;
     }
+}
+
+canvas = document.getElementById('tutorial');
+target = document.getElementById("output");
+shuffle_button = document.getElementById("button1");
+
+// チェックボックスの配列
+// クラス名で取得
+checkboxes = document.getElementsByClassName("form-check-input");
+seed_check = document.getElementById("check8");
+input_num = document.getElementById("inum1");
+
+man_seed = false;
+
+if (canvas.getContext) {
+    ctx = canvas.getContext('2d');
+    // ctx.globalCompositeOperation = "source-in";
+    ctx.globalCompositeOperation = "source-over";
+    drawBackGround();
 }
