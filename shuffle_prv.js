@@ -178,8 +178,7 @@ function onShuffleClick() {
 
 // シード設定の変更
 function onSeedCheckClick() {
-
-    if (seed_check.classList.contains('active') == true) {
+    if (seed_check.checked) {
         input_num.disabled = false;
         man_seed = true;
     } else {
