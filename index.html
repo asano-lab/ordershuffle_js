@@ -11,68 +11,62 @@
 </head>
 
 <body>
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-lg-6 mb-2">
-                <h2>
-                    発表の順番決め
-                </h2>
-                <form>
-                    <div class="row g-2 align-items-center mb-2">
-                        <div class="col-auto">
-                            <label for="presenters" class="col-form-label"><i class="fas fa-users"></i>
-                                発表者</label>
-                        </div>
-                        <div class="col-auto">
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group"
-                                id="presenters">
-                                <input type="checkbox" class="btn-check cbc1" id="check1" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="check1">A</label>
-                                <input type="checkbox" class="btn-check cbc1" id="check2" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="check2">B</label>
-                                <input type="checkbox" class="btn-check cbc1" id="check3" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="check3">C</label>
-                                <input type="checkbox" class="btn-check cbc1" id="check4" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="check4">D</label>
-                                <input type="checkbox" class="btn-check cbc1" id="check5" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="check5">E</label>
-                                <input type="checkbox" class="btn-check cbc1" id="check6" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="check6">F</label>
-                                <input type="checkbox" class="btn-check cbc1" id="check7" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="check7">G</label>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <button type="button" class="btn btn-outline-primary" id="button1"
-                                onclick="onShuffleClick();"><i class="fas fa-random"></i> シャッフル</button>
-                        </div>
+    <div class="container-fluid mt-1">
+        <h2>
+            発表の順番決め
+        </h2>
+        <form>
+            <div class="row g-1 align-items-center mb-1">
+                <div class="col-auto">
+                    <label for="presenters" class="col-form-label"><i class="fas fa-users"></i>
+                        発表者</label>
+                </div>
+                <div class="col-auto">
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" id="presenters">
+                        <input type="checkbox" class="btn-check cbc1" id="check1" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="check1">A</label>
+                        <input type="checkbox" class="btn-check cbc1" id="check2" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="check2">B</label>
+                        <input type="checkbox" class="btn-check cbc1" id="check3" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="check3">C</label>
+                        <input type="checkbox" class="btn-check cbc1" id="check4" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="check4">D</label>
+                        <input type="checkbox" class="btn-check cbc1" id="check5" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="check5">E</label>
+                        <input type="checkbox" class="btn-check cbc1" id="check6" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="check6">F</label>
+                        <input type="checkbox" class="btn-check cbc1" id="check7" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="check7">G</label>
                     </div>
-                    <div class="row g-2 align-items-center mb-2">
-                        <div class="col-auto">
-                            <div class="input-group">
-                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="button"
-                                    onclick="onSeedCheckClick();" id="check8"><i class="fas fa-seedling"></i>
-                                    シード指定</button>
-                                <input type="number" class="form-control" id="inum1" disabled>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <span id="seedHelpInline" class="form-text">
-                                指定なしで自動設定
-                            </span>
-                        </div>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-outline-primary" id="button1" onclick="onShuffleClick();"><i
+                            class="fas fa-random"></i> シャッフル</button>
+                </div>
+            </div>
+            <div class="row g-1 align-items-center mb-1">
+                <div class="col-auto">
+                    <div class="input-group">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="button"
+                            onclick="onSeedCheckClick();" id="check8"><i class="fas fa-seedling"></i>
+                            シード指定</button>
+                        <input type="number" class="form-control" id="inum1" disabled>
                     </div>
-                </form>
+                </div>
+                <div class="col-auto">
+                    <span id="seedHelpInline" class="form-text">
+                        未指定で自動設定
+                    </span>
+                </div>
             </div>
-            <div class="col-lg-6 mb-2">
-                <canvas id="tutorial" width="485" height="475"></canvas>
-                <div id="output"></div>
-            </div>
-        </div>
-        <script src="./shuffle_prv.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
+        </form>
+        <canvas id="tutorial" width="430" height="430"></canvas>
+        <div id="output"></div>
+    </div>
+    <script src="./shuffle_prv.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
