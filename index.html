@@ -11,16 +11,16 @@
 </head>
 
 <body>
-    <div class="container mt-3">
+    <div class="container mt-2">
         <div class="row">
-            <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 mb-2">
                 <h2>
                     発表の順番決め
                 </h2>
                 <form>
-                    <div class="row g-3 align-items-center mb-3">
+                    <div class="row g-2 align-items-center mb-2">
                         <div class="col-auto">
-                            <label for="inputPassword6" class="col-form-label"><i class="fas fa-users"></i>
+                            <label for="presenters" class="col-form-label"><i class="fas fa-users"></i>
                                 発表者</label>
                         </div>
                         <div class="col-auto">
@@ -47,7 +47,7 @@
                                 onclick="onShuffleClick();"><i class="fas fa-random"></i> シャッフル</button>
                         </div>
                     </div>
-                    <div class="row g-3 align-items-center mb-3">
+                    <div class="row g-2 align-items-center mb-2">
                         <div class="col-auto">
                             <div class="input-group">
                                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="button"
@@ -58,13 +58,13 @@
                         </div>
                         <div class="col-auto">
                             <span id="seedHelpInline" class="form-text">
-                                指定しなければ自動設定
+                                指定なしで自動設定
                             </span>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 mb-2">
                 <canvas id="tutorial" width="485" height="475"></canvas>
                 <div id="output"></div>
             </div>
