@@ -1,4 +1,4 @@
-const SCALE = 22.5;
+const SCALE = 25;
 const MAX_POPULATION = 7;
 
 // 机の位置と大きさ
