@@ -11,56 +11,60 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-3">
         <div class="row">
-            <div class="col-lg-5 mt-2">
-                <h3>
+            <div class="col-lg-6 mb-3">
+                <h2>
                     発表の順番決め
-                    <small class="text-muted">発表する人を選びシャッフルする</small>
-                </h3>
+                </h2>
                 <form>
-                    <label for="presenters" class="form-label"><i class="fas fa-users"></i> 発表する人</label>
-                    <div class="mb-1" id="presenters">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="check1" checked>
-                            <label class="form-check-label" for="check1">A</label>
+                    <div class="row g-3 align-items-center mb-3">
+                        <div class="col-auto">
+                            <label for="inputPassword6" class="col-form-label"><i class="fas fa-users"></i>
+                                発表者</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="check2" checked>
-                            <label class="form-check-label" for="check2">B</label>
+                        <div class="col-auto">
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group"
+                                id="presenters">
+                                <input type="checkbox" class="btn-check cbc1" id="check1" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="check1">A</label>
+                                <input type="checkbox" class="btn-check cbc1" id="check2" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="check2">B</label>
+                                <input type="checkbox" class="btn-check cbc1" id="check3" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="check3">C</label>
+                                <input type="checkbox" class="btn-check cbc1" id="check4" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="check4">D</label>
+                                <input type="checkbox" class="btn-check cbc1" id="check5" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="check5">E</label>
+                                <input type="checkbox" class="btn-check cbc1" id="check6" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="check6">F</label>
+                                <input type="checkbox" class="btn-check cbc1" id="check7" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="check7">G</label>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="check3" checked>
-                            <label class="form-check-label" for="check3">C</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="check4" checked>
-                            <label class="form-check-label" for="check4">D</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="check5" checked>
-                            <label class="form-check-label" for="check5">E</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="check6">
-                            <label class="form-check-label" for="check6">F</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="check7" checked>
-                            <label class="form-check-label" for="check7">G</label>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-outline-primary" id="button1"
+                                onclick="onShuffleClick();"><i class="fas fa-random"></i> シャッフル</button>
                         </div>
                     </div>
-                    <div class="form-check mb-1">
-                        <input type="checkbox" class="form-check-input" id="check8" onclick="onSeedCheckClick();">
-                        <label for="check8" class="form-label"><i class="fas fa-seedling"></i> シード値を指定する</label>
-                        <input type="number" class="form-control" id="inum1" disabled>
-                        <div id="seedHelp" class="form-text">指定しない場合、時刻がシード値になる</div>
+                    <div class="row g-3 align-items-center mb-3">
+                        <div class="col-auto">
+                            <div class="input-group">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="button"
+                                    onclick="onSeedCheckClick();" id="check8"><i class="fas fa-seedling"></i>
+                                    シード指定</button>
+                                <input type="number" class="form-control" id="inum1" disabled>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <span id="seedHelpInline" class="form-text">
+                                指定しなければ自動設定
+                            </span>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-primary" id="button1" onclick="onShuffleClick();"><i
-                            class="fas fa-random"></i> シャッフル</button>
                 </form>
             </div>
-            <div class="col-lg-7 mt-2" style="overflow: auto;">
+            <div class="col-lg-6 mb-3">
                 <canvas id="tutorial" width="485" height="475"></canvas>
                 <div id="output"></div>
             </div>

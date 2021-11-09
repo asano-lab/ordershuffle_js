@@ -178,7 +178,8 @@ function onShuffleClick() {
 
 // シード設定の変更
 function onSeedCheckClick() {
-    if (seed_check.checked) {
+
+    if (seed_check.classList.contains('active') == true) {
         input_num.disabled = false;
         man_seed = true;
     } else {
@@ -193,7 +194,7 @@ shuffle_button = document.getElementById("button1");
 
 // チェックボックスの配列
 // クラス名で取得
-checkboxes = document.getElementsByClassName("form-check-input");
+checkboxes = document.getElementsByClassName("cbc1");
 seed_check = document.getElementById("check8");
 input_num = document.getElementById("inum1");
 
