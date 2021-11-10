@@ -216,13 +216,8 @@ const onShuffleClick = () => {
 
 // シード設定の変更
 const onSeedCheckClick = () => {
-    if (seed_check.checked) {
-        input_num.disabled = false;
-        man_seed = true;
-    } else {
-        input_num.disabled = true;
-        man_seed = false;
-    }
+    man_seed = seed_check.checked;
+    input_num.disabled = !man_seed;
 }
 
 // 順番に関する変数を初期化
