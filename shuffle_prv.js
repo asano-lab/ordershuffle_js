@@ -205,7 +205,8 @@ if (canvas.getContext) {
     });
 
     canvas.addEventListener("mousemove", (e) => {
-        console.log("moved!!");
+        console.log(e);
+        console.log(e.offsetX, e.offsetY);
     });
 
     drawBackGround();
