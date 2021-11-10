@@ -221,7 +221,7 @@ if (canvas.getContext) {
     // ctx.globalCompositeOperation = "source-in";
     ctx.globalCompositeOperation = "source-over";
     canvas.addEventListener("mouseenter", (e) => {
-        console.log(e);
+        ;
     });
 
     canvas.addEventListener("mousemove", (e) => {
@@ -254,6 +254,15 @@ if (canvas.getContext) {
         }
         console.log(x, y);
         console.log(pointed);
+        drawBackGround();
+        drawOrdersImm();
+    });
+
+    canvas.addEventListener("mouseout", (e) => {
+        if (pointed == -1) {
+            return;
+        }
+        pointed = -1;
         drawBackGround();
         drawOrdersImm();
     });
