@@ -28,8 +28,6 @@ const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
 
 const FONTSIZE = SCALE * 1.6
 
-let ctx;
-
 let population = 0;
 
 // 出席者
@@ -237,7 +235,7 @@ const setDisabledCheckboxes = (b) => {
     }
 }
 
-const canvas = document.getElementById("tutorial");
+const canvas = document.getElementById("main_canvas");
 const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
 
@@ -246,6 +244,9 @@ const shuffle_button = document.getElementById("button1");
 const checkboxes = document.getElementsByClassName("cbc1");
 const seed_check = document.getElementById("check8");
 const input_num = document.getElementById("inum1");
+
+// canvasのなにか
+let ctx;
 
 if (canvas.getContext) {
     ctx = canvas.getContext("2d");
