@@ -147,7 +147,6 @@ const drawOrdersImm = () => {
     
     for (let i = 0; i < population; i++) {
         coo = TXT_COO[orders_num[i]];
-        // console.log(coo);
         ctx.fillText(i + 1, coo[0], coo[1]);
     }
 }
@@ -232,20 +231,28 @@ if (canvas.getContext) {
         const x = e.offsetX;
         const y = e.offsetY;
         let x0, y0, w, h;
-        let somewhere = false;
-        console.log(x, y);
+        // まずは直前の座標を確認
+        if (pointed >= 0) {
+            [x0, y0, w, h] = COO_SIZ[pointed];
+            if (x0 <= x && x <= x0 + w && y0 <= y && y <= y0 + h) {
+                return;
+            }
+        }
+        const prev_pointed = pointed;
 
         for (let i = 0; i < MAX_POPULATION; i++) {
             [x0, y0, w, h] = COO_SIZ[i];
             if (x0 <= x && x <= x0 + w && y0 <= y && y <= y0 + h) {
                 pointed = i;
-                somewhere = true;
                 break;
+            } else {
+                pointed = -1;
             }
         }
-        if (!somewhere) {
-            pointed = -1;
+        if (prev_pointed == -1 && pointed == -1) {
+            return;
         }
+        console.log(x, y);
         console.log(pointed);
         drawBackGround();
         drawOrdersImm();
