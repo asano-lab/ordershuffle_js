@@ -40,6 +40,9 @@ let orders_num;
 
 let orders_name;
 
+// シード指定するか否か
+let man_seed = false;
+
 // グローバルのイテレータ変数
 let g_itr;
 
@@ -147,7 +150,7 @@ const onShuffleClick = () => {
 
     for (i = 0; i < MAX_POPULATION; i++) {
         if (checkboxes[i].checked) {
-            population += 1;
+            population++;
             attendees.push(i);
             cp_attendees.push(i);
         }
@@ -186,9 +189,6 @@ const shuffle_button = document.getElementById("button1");
 const checkboxes = document.getElementsByClassName("cbc1");
 const seed_check = document.getElementById("check8");
 const input_num = document.getElementById("inum1");
-
-// シード指定するか否か
-let man_seed = false;
 
 if (canvas.getContext) {
     ctx = canvas.getContext('2d');
