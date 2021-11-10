@@ -125,8 +125,7 @@ const startDrawOrders = () => {
 
 // 順番を描画する (時間差あり)
 const drawOrders = () => {
-    const coo = TXT_COO[orders_num[g_itr]];
-    g_itr++;
+    const coo = TXT_COO[orders_num[g_itr++]];
     ctx.fillText(g_itr, coo[0], coo[1]);
     if (g_itr < population) {
         setTimeout(drawOrders, 200);
