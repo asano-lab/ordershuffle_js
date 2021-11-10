@@ -160,11 +160,10 @@ const drawTableAndOrder = (table_num, io) => {
     ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillText(NAMES[table_num], COO_SIZ[table_num][0] + SCALE * 0.1, COO_SIZ[table_num][1] + SCALE * 0.8);
     if (orders_num.includes(table_num)) {
-        const rank = orders_num.indexOf(table_num);
         const coo = TXT_COO[table_num];
         ctx.font = String(FONTSIZE) + "px serif";
         ctx.fillStyle = "rgb(200, 0, 0)";
-        ctx.fillText(rank + 1, coo[0], coo[1]);
+        ctx.fillText(orders_num.indexOf(table_num) + 1, coo[0], coo[1]);
     }
 }
 
