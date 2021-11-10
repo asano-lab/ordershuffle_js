@@ -71,7 +71,7 @@ class Random {
 }
 
 // 背景描画
-function drawBackGround() {
+const drawBackGround = () => {
     let i;
     // 背景の描画
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
@@ -110,7 +110,7 @@ function startDrawOrders() {
 }
 
 // 順番を描画する (時間差あり)
-function drawOrders() {
+const drawOrders = () => {
     let coo = TXT_COO[orders_num[g_itr]];
     g_itr++;
     ctx.fillText(g_itr, coo[0], coo[1]);
@@ -123,7 +123,7 @@ function drawOrders() {
 }
 
 // シャッフルボタン押下時に実行する関数
-function onShuffleClick() {
+const onShuffleClick = () => {
     shuffle_button.disabled = true;
     let i, r;
     // シードの自動設定 (時刻)
@@ -167,7 +167,7 @@ function onShuffleClick() {
 }
 
 // シード設定の変更
-function onSeedCheckClick() {
+const onSeedCheckClick = () => {
     if (seed_check.checked) {
         input_num.disabled = false;
         man_seed = true;
