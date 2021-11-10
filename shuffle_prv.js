@@ -200,5 +200,13 @@ if (canvas.getContext) {
     ctx = canvas.getContext('2d');
     // ctx.globalCompositeOperation = "source-in";
     ctx.globalCompositeOperation = "source-over";
+    canvas.addEventListener("mouseenter", (e) => {
+        console.log(e);
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+        console.log("moved!!");
+    });
+
     drawBackGround();
 }
