@@ -83,9 +83,7 @@ const drawBackGround = () => {
 
     // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
-        if (i == pointed) {
-            ctx.fillStyle = "rgb(255, 50, 50)";
-        } else if (checkboxes[i].checked) {
+        if (checkboxes[i].checked) {
             ctx.fillStyle = "rgb(200, 200, 0)";
         } else {
             ctx.fillStyle = "rgb(100, 100, 0)";
