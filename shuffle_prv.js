@@ -99,9 +99,15 @@ const drawBackGround = () => {
 }
 
 // 順番の描画開始
-function startDrawOrders() {
+const startDrawOrders = () => {
     target.innerHTML = "";
     drawBackGround();
+
+    // 発表者不在
+    if (!population) {
+        shuffle_button.disabled = false;
+        return;
+    }
 
     // フォントの設定
     ctx.font = String(FONTSIZE) + "px serif";
@@ -140,8 +146,7 @@ const onShuffleClick = () => {
         input_num.value = 0;
     }
 
-    const seed = input_num.value;
-    const random = new Random(seed);
+    const random = new Random(input_num.value);
 
     // 人数のカウントと出席者の取得
     population = 0;
@@ -155,6 +160,7 @@ const onShuffleClick = () => {
             cp_attendees.push(i);
         }
     }
+
     // ランダムに順番を決める
     orders_num = [];
     for (i = population; i > 0; i--) {
