@@ -279,7 +279,6 @@ if (canvas.getContext) {
         }
         drawTableAndOrder(pointed, false);
         pointed = -1;
-        
     });
 
     for (let i = 0; i < checkboxes.length; i++) {
@@ -287,10 +286,7 @@ if (canvas.getContext) {
             // シャッフル済フラグを兼ねる
             if (!population) {
                 drawTableAndOrder(i, false);
-                return;
-            }
-            const res = confirm("順番をリセットしますか?");
-            if (res) {
+            } else if (confirm("順番をリセットしますか?")) {
                 population = 0;
                 attendees = [];
                 orders_num = [];
@@ -298,8 +294,15 @@ if (canvas.getContext) {
                 drawBackGround();
             } else {
                 e.path[0].checked = !e.path[0].checked;
-                // console.log(e.path[0]);
             }
+            let flag = true;
+            for (let j = 0; j < checkboxes.length; j++) {
+                if (checkboxes[j].checked) {
+                    flag = false;
+                    break;
+                }
+            }
+            shuffle_button.disabled = flag;
         });
     }
 
