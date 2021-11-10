@@ -135,26 +135,14 @@ const drawOrders = () => {
     target.innerHTML = orders_name.slice(0, g_itr);
 }
 
-// 直ちに順番を描画
-const drawOrdersImm = () => {
-    let coo;
-    // フォントの設定
-    ctx.font = String(FONTSIZE) + "px serif";
-    ctx.fillStyle = "rgb(200, 0, 0)";
-    
-    for (let i = 0; i < population; i++) {
-        coo = TXT_COO[orders_num[i]];
-        ctx.fillText(i + 1, coo[0], coo[1]);
-    }
-}
-
+// 指定した机とその番号を上書き
 const drawTableAndOrder = (table_num, io) => {
     // in
     if (io) {
         if (checkboxes[table_num].checked) {
             ctx.fillStyle = "rgb(255, 100, 100)";
         } else {
-            ctx.fillStyle = "rgb(155, 0, 0)";
+            ctx.fillStyle = "rgb(200, 0, 0)";
         }
     }
     // out
@@ -292,9 +280,9 @@ if (canvas.getContext) {
         if (pointed == -1) {
             return;
         }
+        drawTableAndOrder(pointed, false);
         pointed = -1;
-        drawBackGround();
-        drawOrdersImm();
+        
     });
 
     drawBackGround();
