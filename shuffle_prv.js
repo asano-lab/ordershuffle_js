@@ -229,10 +229,12 @@ const setDisabledCheckboxes = (b) => {
     }
 }
 
+// 一括切り替え
 const setDisabledAll = (b) => {
     shuffle_button.disabled = b;
     seed_check.disabled = b;
     setDisabledCheckboxes(b);
+    // シードの入力欄だけ例外
     if (man_seed) {
         input_num.disabled = b;
     }
