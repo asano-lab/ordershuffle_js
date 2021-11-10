@@ -28,17 +28,9 @@ const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
 
 const FONTSIZE = SCALE * 1.6
 
-let canvas;
-let target;
 let ctx;
 
-let shuffle_button;
-let checkboxes;
-
 let population;
-
-// シード値入力欄
-let input_num;
 
 // 出席者
 let attendees;
@@ -50,8 +42,6 @@ let orders_name;
 
 // グローバルのイテレータ変数
 let g_itr;
-
-let man_seed;
 
 // シード付き乱数生成
 // 参考：https://sbfl.net/blog/2017/06/01/javascript-reproducible-random/
@@ -187,17 +177,18 @@ function onSeedCheckClick() {
     }
 }
 
-canvas = document.getElementById('tutorial');
-target = document.getElementById("output");
-shuffle_button = document.getElementById("button1");
+const canvas = document.getElementById('tutorial');
+const target = document.getElementById("output");
+const shuffle_button = document.getElementById("button1");
 
 // チェックボックスの配列
 // クラス名で取得
-checkboxes = document.getElementsByClassName("cbc1");
-seed_check = document.getElementById("check8");
-input_num = document.getElementById("inum1");
+const checkboxes = document.getElementsByClassName("cbc1");
+const seed_check = document.getElementById("check8");
+const input_num = document.getElementById("inum1");
 
-man_seed = false;
+// シード指定するか否か
+let man_seed = false;
 
 if (canvas.getContext) {
     ctx = canvas.getContext('2d');
