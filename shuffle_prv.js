@@ -47,6 +47,8 @@ let pointed = -1;
 // グローバルのイテレータ変数
 let g_itr;
 
+let running = false;
+
 // シード付き乱数生成
 // 参考：https://sbfl.net/blog/2017/06/01/javascript-reproducible-random/
 class Random {
@@ -107,6 +109,8 @@ const startDrawOrders = () => {
     // 発表者不在
     if (!population) {
         shuffle_button.disabled = false;
+        running = false;
+        setDisabledCheckboxes(false);
         return;
     }
 
@@ -127,7 +131,9 @@ const drawOrders = () => {
     if (g_itr < population) {
         setTimeout(drawOrders, 200);
     } else {
+        running = false;
         shuffle_button.disabled = false;
+        setDisabledCheckboxes(false);
     }
     target.innerHTML = orders_name.slice(0, g_itr);
 }
@@ -165,7 +171,9 @@ const drawTableAndOrder = (table_num, io) => {
 
 // シャッフルボタン押下時に実行する関数
 const onShuffleClick = () => {
+    running = true;
     shuffle_button.disabled = true;
+    setDisabledCheckboxes(true);
     let i, r;
     // シードの自動設定 (時刻)
     if (!man_seed) {
@@ -226,6 +234,13 @@ const initOrder = () => {
     orders_name = [];
 }
 
+// 有効無効の切り替え
+const setDisabledCheckboxes = (b) => {
+    for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].disabled = b;
+    }
+}
+
 const canvas = document.getElementById("tutorial");
 const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
@@ -240,11 +255,11 @@ if (canvas.getContext) {
     ctx = canvas.getContext("2d");
     // ctx.globalCompositeOperation = "source-in";
     ctx.globalCompositeOperation = "source-over";
-    canvas.addEventListener("mouseenter", (e) => {
-        ;
-    });
 
     canvas.addEventListener("mousemove", (e) => {
+        if (running) {
+            return;
+        }
         const x = e.offsetX;
         const y = e.offsetY;
         let x0, y0, w, h;
@@ -285,7 +300,6 @@ if (canvas.getContext) {
     });
 
     canvas.addEventListener("click", (e) => {
-        console.log(pointed);
         if (pointed < 0) {
             return;
         }
