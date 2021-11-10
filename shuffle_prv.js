@@ -106,10 +106,8 @@ const startDrawOrders = () => {
 
     // 発表者不在
     if (!population) {
-        shuffle_button.disabled = false;
         running = false;
-        seed_check.disabled = false;
-        setDisabledCheckboxes(false);
+        setDisabledAll(false);
         return;
     }
 
@@ -130,9 +128,7 @@ const drawOrders = () => {
         setTimeout(drawOrders, 200);
     } else {
         running = false;
-        shuffle_button.disabled = false;
-        seed_check.disabled = false;
-        setDisabledCheckboxes(false);
+        setDisabledAll(false);
     }
     target.innerHTML = orders_name.slice(0, g_itr);
 }
@@ -170,9 +166,7 @@ const drawTableAndOrder = (table_num, io) => {
 // シャッフルボタン押下時に実行する関数
 const onShuffleClick = () => {
     running = true;
-    shuffle_button.disabled = true;
-    seed_check.disabled = true;
-    setDisabledCheckboxes(true);
+    setDisabledAll(true);
     let i, r;
     // シードの自動設定 (時刻)
     if (!man_seed) {
@@ -232,6 +226,15 @@ const initOrder = () => {
 const setDisabledCheckboxes = (b) => {
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].disabled = b;
+    }
+}
+
+const setDisabledAll = (b) => {
+    shuffle_button.disabled = b;
+    seed_check.disabled = b;
+    setDisabledCheckboxes(b);
+    if (man_seed) {
+        input_num.disabled = b;
     }
 }
 
