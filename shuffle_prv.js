@@ -323,6 +323,7 @@ if (canvas.getContext) {
         shuffle_button.disabled = flag;
     });
 
+    // チェックボックスクリック時動作の定義
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].addEventListener("click", (e) => {
             // シャッフル済フラグを兼ねる
