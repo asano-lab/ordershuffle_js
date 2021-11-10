@@ -218,6 +218,14 @@ const onSeedCheckClick = () => {
     }
 }
 
+// 順番に関する変数を初期化
+const initOrder = () => {
+    population = 0;
+    attendees = [];
+    orders_num = [];
+    orders_name = [];
+}
+
 const canvas = document.getElementById("tutorial");
 const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
@@ -237,9 +245,6 @@ if (canvas.getContext) {
     });
 
     canvas.addEventListener("mousemove", (e) => {
-        if (shuffle_button.disabled) {
-            return;
-        }
         const x = e.offsetX;
         const y = e.offsetY;
         let x0, y0, w, h;
@@ -279,16 +284,36 @@ if (canvas.getContext) {
         pointed = -1;
     });
 
+    canvas.addEventListener("click", (e) => {
+        console.log(pointed);
+        if (pointed < 0) {
+            return;
+        }
+        if (!population) {
+            checkboxes[pointed].checked = !checkboxes[pointed].checked;
+            drawTableAndOrder(pointed, true);
+        } else if (confirm("順番をリセットしますか?")) {
+            checkboxes[pointed].checked = !checkboxes[pointed].checked;
+            initOrder();
+            drawBackGround();
+        }
+        let flag = true;
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                flag = false;
+                break;
+            }
+        }
+        shuffle_button.disabled = flag;
+    });
+
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].addEventListener("click", (e) => {
             // シャッフル済フラグを兼ねる
             if (!population) {
                 drawTableAndOrder(i, false);
             } else if (confirm("順番をリセットしますか?")) {
-                population = 0;
-                attendees = [];
-                orders_num = [];
-                orders_name = [];
+                initOrder();
                 drawBackGround();
             } else {
                 e.path[0].checked = !e.path[0].checked;
