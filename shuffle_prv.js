@@ -36,15 +36,12 @@ let population;
 let attendees;
 
 // 順番を格納する配列
-let orders_num;
+let orders_num = [];
 
 let orders_name;
 
 // シード指定するか否か
 let man_seed = false;
-
-// シャッフル済かどうか
-let shuffled = false;
 
 let pointed = -1;
 
@@ -151,6 +148,36 @@ const drawOrdersImm = () => {
     }
 }
 
+const drawTableAndOrder = (table_num, io) => {
+    // in
+    if (io) {
+        if (checkboxes[table_num].checked) {
+            ctx.fillStyle = "rgb(255, 100, 100)";
+        } else {
+            ctx.fillStyle = "rgb(155, 0, 0)";
+        }
+    }
+    // out
+    else {
+        if (checkboxes[table_num].checked) {
+            ctx.fillStyle = "rgb(200, 200, 0)";
+        } else {
+            ctx.fillStyle = "rgb(100, 100, 0)";
+        }
+    }
+    ctx.fillRect(COO_SIZ[table_num][0], COO_SIZ[table_num][1], COO_SIZ[table_num][2], COO_SIZ[table_num][3]);
+    ctx.font = String(FONTSIZE * 0.5) + "px serif";
+    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fillText(NAMES[table_num], COO_SIZ[table_num][0] + SCALE * 0.1, COO_SIZ[table_num][1] + SCALE * 0.8);
+    if (orders_num.includes(table_num)) {
+        const rank = orders_num.indexOf(table_num);
+        const coo = TXT_COO[table_num];
+        ctx.font = String(FONTSIZE) + "px serif";
+        ctx.fillStyle = "rgb(200, 0, 0)";
+        ctx.fillText(rank + 1, coo[0], coo[1]);
+    }
+}
+
 // シャッフルボタン押下時に実行する関数
 const onShuffleClick = () => {
     shuffle_button.disabled = true;
@@ -249,13 +276,16 @@ if (canvas.getContext) {
                 pointed = -1;
             }
         }
-        if (prev_pointed == -1 && pointed == -1) {
+        if (prev_pointed == pointed) {
             return;
         }
         console.log(x, y);
         console.log(pointed);
-        drawBackGround();
-        drawOrdersImm();
+        if (pointed >= 0) {
+            drawTableAndOrder(pointed, true);
+        } else {
+            drawTableAndOrder(prev_pointed, false)
+        }
     });
 
     canvas.addEventListener("mouseout", (e) => {
