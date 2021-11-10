@@ -43,6 +43,11 @@ let orders_name;
 // シード指定するか否か
 let man_seed = false;
 
+// シャッフル済かどうか
+let shuffled = false;
+
+let pointed = false;
+
 // グローバルのイテレータ変数
 let g_itr;
 
@@ -205,8 +210,25 @@ if (canvas.getContext) {
     });
 
     canvas.addEventListener("mousemove", (e) => {
-        console.log(e);
-        console.log(e.offsetX, e.offsetY);
+        const x = e.offsetX;
+        const y = e.offsetY;
+        let x0, y0, w, h;
+        let somewhere = false;
+        console.log(x, y);
+
+        for (let i = 0; i < MAX_POPULATION; i++) {
+            [x0, y0, w, h] = COO_SIZ[i];
+            if (x0 <= x && x <= x0 + w && y0 <= y && y <= y0 + h) {
+                pointed = i;
+                somewhere = true;
+                drawBackGround();
+                break;
+            }
+        }
+        if (!somewhere) {
+            pointed = -1;
+        }
+        console.log(pointed); 
     });
 
     drawBackGround();
