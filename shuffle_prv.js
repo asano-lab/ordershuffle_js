@@ -88,7 +88,7 @@ const drawBackGround = () => {
     // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
         if (i == pointed) {
-            ctx.fillStyle = "rgb(255, 0, 0)";
+            ctx.fillStyle = "rgb(255, 50, 50)";
         } else if (checkboxes[i].checked) {
             ctx.fillStyle = "rgb(200, 200, 0)";
         } else {
@@ -127,7 +127,7 @@ const startDrawOrders = () => {
 
 // 順番を描画する (時間差あり)
 const drawOrders = () => {
-    let coo = TXT_COO[orders_num[g_itr]];
+    const coo = TXT_COO[orders_num[g_itr]];
     g_itr++;
     ctx.fillText(g_itr, coo[0], coo[1]);
     if (g_itr < population) {
@@ -136,6 +136,20 @@ const drawOrders = () => {
         shuffle_button.disabled = false;
     }
     target.innerHTML = orders_name.slice(0, g_itr);
+}
+
+// 直ちに順番を描画
+const drawOrdersImm = () => {
+    let coo;
+    // フォントの設定
+    ctx.font = String(FONTSIZE) + "px serif";
+    ctx.fillStyle = "rgb(200, 0, 0)";
+    
+    for (let i = 0; i < population; i++) {
+        coo = TXT_COO[orders_num[i]];
+        // console.log(coo);
+        ctx.fillText(i + 1, coo[0], coo[1]);
+    }
 }
 
 // シャッフルボタン押下時に実行する関数
@@ -212,6 +226,9 @@ if (canvas.getContext) {
     });
 
     canvas.addEventListener("mousemove", (e) => {
+        if (shuffle_button.disabled) {
+            return;
+        }
         const x = e.offsetX;
         const y = e.offsetY;
         let x0, y0, w, h;
@@ -231,6 +248,7 @@ if (canvas.getContext) {
         }
         console.log(pointed);
         drawBackGround();
+        drawOrdersImm();
     });
 
     drawBackGround();
