@@ -46,7 +46,7 @@ let man_seed = false;
 // シャッフル済かどうか
 let shuffled = false;
 
-let pointed = false;
+let pointed = -1;
 
 // グローバルのイテレータ変数
 let g_itr;
@@ -87,10 +87,12 @@ const drawBackGround = () => {
 
     // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
-        if (checkboxes[i].checked) {
-            ctx.fillStyle = "rgb(200, 200, 0)"
+        if (i == pointed) {
+            ctx.fillStyle = "rgb(255, 0, 0)";
+        } else if (checkboxes[i].checked) {
+            ctx.fillStyle = "rgb(200, 200, 0)";
         } else {
-            ctx.fillStyle = "rgb(100, 100, 0)"
+            ctx.fillStyle = "rgb(100, 100, 0)";
         }
         ctx.fillRect(COO_SIZ[i][0], COO_SIZ[i][1], COO_SIZ[i][2], COO_SIZ[i][3]);
     }
@@ -221,14 +223,14 @@ if (canvas.getContext) {
             if (x0 <= x && x <= x0 + w && y0 <= y && y <= y0 + h) {
                 pointed = i;
                 somewhere = true;
-                drawBackGround();
                 break;
             }
         }
         if (!somewhere) {
             pointed = -1;
         }
-        console.log(pointed); 
+        console.log(pointed);
+        drawBackGround();
     });
 
     drawBackGround();
