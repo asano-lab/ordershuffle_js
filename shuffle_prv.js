@@ -110,6 +110,7 @@ const startDrawOrders = () => {
     if (!population) {
         shuffle_button.disabled = false;
         running = false;
+        seed_check.disabled = false;
         setDisabledCheckboxes(false);
         return;
     }
@@ -132,6 +133,7 @@ const drawOrders = () => {
     } else {
         running = false;
         shuffle_button.disabled = false;
+        seed_check.disabled = false;
         setDisabledCheckboxes(false);
     }
     target.innerHTML = orders_name.slice(0, g_itr);
@@ -171,6 +173,7 @@ const drawTableAndOrder = (table_num, io) => {
 const onShuffleClick = () => {
     running = true;
     shuffle_button.disabled = true;
+    seed_check.disabled = true;
     setDisabledCheckboxes(true);
     let i, r;
     // シードの自動設定 (時刻)
