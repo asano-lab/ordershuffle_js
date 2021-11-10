@@ -30,15 +30,14 @@ const FONTSIZE = SCALE * 1.6
 
 let ctx;
 
-let population;
+let population = 0;
 
 // 出席者
-let attendees;
+let attendees = [];
 
 // 順番を格納する配列
 let orders_num = [];
-
-let orders_name;
+let orders_name = [];
 
 // シード指定するか否か
 let man_seed = false;
@@ -221,7 +220,7 @@ const onSeedCheckClick = () => {
     }
 }
 
-const canvas = document.getElementById('tutorial');
+const canvas = document.getElementById("tutorial");
 const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
 
@@ -232,7 +231,7 @@ const seed_check = document.getElementById("check8");
 const input_num = document.getElementById("inum1");
 
 if (canvas.getContext) {
-    ctx = canvas.getContext('2d');
+    ctx = canvas.getContext("2d");
     // ctx.globalCompositeOperation = "source-in";
     ctx.globalCompositeOperation = "source-over";
     canvas.addEventListener("mouseenter", (e) => {
@@ -267,8 +266,6 @@ if (canvas.getContext) {
         if (prev_pointed == pointed) {
             return;
         }
-        console.log(x, y);
-        console.log(pointed);
         if (pointed >= 0) {
             drawTableAndOrder(pointed, true);
         } else {
@@ -284,6 +281,27 @@ if (canvas.getContext) {
         pointed = -1;
         
     });
+
+    for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].addEventListener("click", (e) => {
+            // シャッフル済フラグを兼ねる
+            if (!population) {
+                drawTableAndOrder(i, false);
+                return;
+            }
+            const res = confirm("順番をリセットしますか?");
+            if (res) {
+                population = 0;
+                attendees = [];
+                orders_num = [];
+                orders_name = [];
+                drawBackGround();
+            } else {
+                e.path[0].checked = !e.path[0].checked;
+                // console.log(e.path[0]);
+            }
+        });
+    }
 
     drawBackGround();
 }
