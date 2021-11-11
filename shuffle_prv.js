@@ -1,29 +1,15 @@
-const SCALE = 25;
+
 const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
 
+let SCALE;
+
 // 机の位置と大きさ
-const COO_SIZ = [
-    [0, 0, SCALE * 3, SCALE * 5],
-    [0, SCALE * 6, SCALE * 3, SCALE * 5],
-    [0, SCALE * 12, SCALE * 3, SCALE * 5],
-    [SCALE * 4, SCALE * 16, SCALE * 5, SCALE * 3],
-    [SCALE * 10, SCALE * 16, SCALE * 5, SCALE * 3],
-    [SCALE * 16, SCALE * 6, SCALE * 3, SCALE * 5],
-    [SCALE * 16, 0, SCALE * 3, SCALE * 5]
-];
+let COO_SIZ;
 
 // テキストの位置
-const TXT_COO = [
-    [SCALE, SCALE * 3],
-    [SCALE, SCALE * 9],
-    [SCALE, SCALE * 15],
-    [SCALE * 6, SCALE * 18],
-    [SCALE * 12, SCALE * 18],
-    [SCALE * 17, SCALE * 9],
-    [SCALE * 17, SCALE * 3]
-];
+let TXT_COO;
 
 // 机に割り振るアルファベット
 const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
@@ -71,6 +57,35 @@ class Random {
         return min + (Math.abs(this.next()) % (max - min));
     }
 }
+
+// スケールの変更
+const changeScale = (base) => {
+    SCALE = base;
+    
+    // 机の位置と大きさ
+    COO_SIZ = [
+        [0, 0, SCALE * 3, SCALE * 5],
+        [0, SCALE * 6, SCALE * 3, SCALE * 5],
+        [0, SCALE * 12, SCALE * 3, SCALE * 5],
+        [SCALE * 4, SCALE * 16, SCALE * 5, SCALE * 3],
+        [SCALE * 10, SCALE * 16, SCALE * 5, SCALE * 3],
+        [SCALE * 16, SCALE * 6, SCALE * 3, SCALE * 5],
+        [SCALE * 16, 0, SCALE * 3, SCALE * 5]
+    ];
+    
+    // テキストの位置
+    TXT_COO = [
+        [SCALE, SCALE * 3],
+        [SCALE, SCALE * 9],
+        [SCALE, SCALE * 15],
+        [SCALE * 6, SCALE * 18],
+        [SCALE * 12, SCALE * 18],
+        [SCALE * 17, SCALE * 9],
+        [SCALE * 17, SCALE * 3]
+    ];
+}
+
+changeScale(20);
 
 // 背景描画
 const drawBackGround = () => {
@@ -322,8 +337,9 @@ if (canvas.getContext) {
     drawBackGround();
 }
 
-window.addEventListener("resize", e => {
+window.addEventListener("resize", () => {
     const width = document.documentElement.clientWidth;
     const height = document.documentElement.clientHeight;
     console.log(width, height);
 });
+
