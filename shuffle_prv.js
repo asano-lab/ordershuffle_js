@@ -268,15 +268,19 @@ if (canvas.getContext) {
         // まずは直前の座標を確認
         if (pointed >= 0) {
             [x0, y0, w, h] = COO_SIZ[pointed];
-            if (x0 <= x && x <= x0 + w && y0 <= y && y <= y0 + h) {
+            // ポインタが変化していない
+            if (x0 <= x && x < x0 + w && y0 <= y && y < y0 + h) {
                 return;
             }
+            // 描画を戻す
+            drawTableAndOrder(pointed, false);
         }
+        
         const prev_pointed = pointed;
 
         for (let i = 0; i < MAX_POPULATION; i++) {
             [x0, y0, w, h] = COO_SIZ[i];
-            if (x0 <= x && x <= x0 + w && y0 <= y && y <= y0 + h) {
+            if (x0 <= x && x < x0 + w && y0 <= y && y < y0 + h) {
                 pointed = i;
                 break;
             } else {
@@ -288,8 +292,6 @@ if (canvas.getContext) {
         }
         if (pointed >= 0) {
             drawTableAndOrder(pointed, true);
-        } else {
-            drawTableAndOrder(prev_pointed, false)
         }
     });
 
