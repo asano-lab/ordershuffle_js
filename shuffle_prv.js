@@ -290,22 +290,22 @@ if (main_canvas.getContext) {
         }
         const x = e.offsetX;
         const y = e.offsetY;
-        let x0, y0, w, h, x1, y1;
+        let x0, y0, x1, y1;
         // まずは直前の座標を確認
         if (pointed >= 0) {
-            [x0, y0, w, h, x1, y1] = coo_siz[pointed];
-            // ポインタが変化していない
+            [x0, y0, , ,  x1, y1] = coo_siz[pointed];
+            // ポインタの位置が変化していない
             if (x0 <= x && x < x1 && y0 <= y && y < y1) {
                 return;
             }
-            // 描画を戻す
+            // ポインタの位置が変化
             drawTableAndOrder(pointed, false);
         }
 
         const prev_pointed = pointed;
 
         for (let i = 0; i < MAX_POPULATION; i++) {
-            [x0, y0, w, h, x1, y1] = coo_siz[i];
+            [x0, y0, , , x1, y1] = coo_siz[i];
             if (x0 <= x && x < x1 && y0 <= y && y < y1) {
                 pointed = i;
                 break;
