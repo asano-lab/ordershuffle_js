@@ -241,6 +241,14 @@ const shuffle_button = document.getElementById("button1");
 const seed_check = document.getElementById("check8");
 const input_num = document.getElementById("inum1");
 
+// シード入力欄でEnterキーを押したとき, シャッフルを実行
+input_num.addEventListener("keydown", e => {
+    if (e.key == "Enter") {
+        onShuffleClick();
+        e.preventDefault();
+    }
+});
+
 // canvasのなにか
 let ctx;
 
