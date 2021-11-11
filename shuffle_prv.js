@@ -1,7 +1,7 @@
 const SCALE = 25;
 const MAX_POPULATION = 7;
 
-const smartphone = !!navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
+const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
 
 // 机の位置と大きさ
 const COO_SIZ = [
@@ -134,7 +134,7 @@ const drawOrders = () => {
 // 指定した机とその番号を上書き
 const drawTableAndOrder = (table_num, io) => {
     // in
-    if (io && !smartphone) {
+    if (io && PC_FLAG) {
         if (attend[table_num]) {
             ctx.fillStyle = "rgb(255, 100, 100)";
         } else {
@@ -321,4 +321,3 @@ if (canvas.getContext) {
 
     drawBackGround();
 }
-
