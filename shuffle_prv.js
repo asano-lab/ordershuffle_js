@@ -3,18 +3,18 @@ const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
 
-let SCALE;
-
-// 机の位置と大きさ
-let COO_SIZ;
-
-// テキストの位置
-let TXT_COO;
-
-let font_size;
-
 // 机に割り振るアルファベット
 const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
+
+let scale;
+
+// 机の位置と大きさ
+let coo_siz;
+
+// テキストの位置
+let txt_coo;
+
+let font_size;
 
 let attend = [true, true, true, true, true, false, false];
 
@@ -60,31 +60,31 @@ class Random {
 
 // スケールの変更
 const changeScale = (base) => {
-    SCALE = base;
+    scale = base;
     
     // 机の位置と大きさ
-    COO_SIZ = [
-        [0, 0, SCALE * 3, SCALE * 5],
-        [0, SCALE * 6, SCALE * 3, SCALE * 5],
-        [0, SCALE * 12, SCALE * 3, SCALE * 5],
-        [SCALE * 4, SCALE * 16, SCALE * 5, SCALE * 3],
-        [SCALE * 10, SCALE * 16, SCALE * 5, SCALE * 3],
-        [SCALE * 16, SCALE * 6, SCALE * 3, SCALE * 5],
-        [SCALE * 16, 0, SCALE * 3, SCALE * 5]
+    coo_siz = [
+        [0, 0, scale * 3, scale * 5],
+        [0, scale * 6, scale * 3, scale * 5],
+        [0, scale * 12, scale * 3, scale * 5],
+        [scale * 4, scale * 16, scale * 5, scale * 3],
+        [scale * 10, scale * 16, scale * 5, scale * 3],
+        [scale * 16, scale * 6, scale * 3, scale * 5],
+        [scale * 16, 0, scale * 3, scale * 5]
     ];
     
     // テキストの位置
-    TXT_COO = [
-        [SCALE, SCALE * 3],
-        [SCALE, SCALE * 9],
-        [SCALE, SCALE * 15],
-        [SCALE * 6, SCALE * 18],
-        [SCALE * 12, SCALE * 18],
-        [SCALE * 17, SCALE * 9],
-        [SCALE * 17, SCALE * 3]
+    txt_coo = [
+        [scale, scale * 3],
+        [scale, scale * 9],
+        [scale, scale * 15],
+        [scale * 6, scale * 18],
+        [scale * 12, scale * 18],
+        [scale * 17, scale * 9],
+        [scale * 17, scale * 3]
     ];
 
-    font_size = SCALE * 1.6;
+    font_size = scale * 1.6;
 }
 
 changeScale(20);
@@ -94,7 +94,7 @@ const drawBackGround = () => {
     let i;
     // 背景の描画
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
-    ctx.fillRect(0, 0, SCALE * 19, SCALE * 19);
+    ctx.fillRect(0, 0, scale * 19, scale * 19);
 
     // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
@@ -103,14 +103,14 @@ const drawBackGround = () => {
         } else {
             ctx.fillStyle = "rgb(100, 100, 0)";
         }
-        ctx.fillRect(COO_SIZ[i][0], COO_SIZ[i][1], COO_SIZ[i][2], COO_SIZ[i][3]);
+        ctx.fillRect(coo_siz[i][0], coo_siz[i][1], coo_siz[i][2], coo_siz[i][3]);
     }
 
     // 各机にアルファベットを割り振る
     ctx.font = String(font_size * 0.5) + "px serif";
     ctx.fillStyle = "rgb(0, 0, 0)";
     for (i = 0; i < MAX_POPULATION; i++) {
-        ctx.fillText(NAMES[i], COO_SIZ[i][0] + SCALE * 0.1, COO_SIZ[i][1] + SCALE * 0.8);
+        ctx.fillText(NAMES[i], coo_siz[i][0] + scale * 0.1, coo_siz[i][1] + scale * 0.8);
     }
 }
 
@@ -137,7 +137,7 @@ const startDrawOrders = () => {
 
 // 順番を描画する (時間差あり)
 const drawOrders = () => {
-    const coo = TXT_COO[orders_num[g_itr++]];
+    const coo = txt_coo[orders_num[g_itr++]];
     ctx.fillText(g_itr, coo[0], coo[1]);
     if (g_itr < population) {
         setTimeout(drawOrders, 200);
@@ -166,12 +166,12 @@ const drawTableAndOrder = (table_num, io) => {
             ctx.fillStyle = "rgb(100, 100, 0)";
         }
     }
-    ctx.fillRect(COO_SIZ[table_num][0], COO_SIZ[table_num][1], COO_SIZ[table_num][2], COO_SIZ[table_num][3]);
+    ctx.fillRect(coo_siz[table_num][0], coo_siz[table_num][1], coo_siz[table_num][2], coo_siz[table_num][3]);
     ctx.font = String(font_size * 0.5) + "px serif";
     ctx.fillStyle = "rgb(0, 0, 0)";
-    ctx.fillText(NAMES[table_num], COO_SIZ[table_num][0] + SCALE * 0.1, COO_SIZ[table_num][1] + SCALE * 0.8);
+    ctx.fillText(NAMES[table_num], coo_siz[table_num][0] + scale * 0.1, coo_siz[table_num][1] + scale * 0.8);
     if (orders_num.includes(table_num)) {
-        const coo = TXT_COO[table_num];
+        const coo = txt_coo[table_num];
         ctx.font = String(font_size) + "px serif";
         ctx.fillStyle = "rgb(200, 0, 0)";
         ctx.fillText(orders_num.indexOf(table_num) + 1, coo[0], coo[1]);
@@ -285,7 +285,7 @@ if (main_canvas.getContext) {
         let x0, y0, w, h;
         // まずは直前の座標を確認
         if (pointed >= 0) {
-            [x0, y0, w, h] = COO_SIZ[pointed];
+            [x0, y0, w, h] = coo_siz[pointed];
             // ポインタが変化していない
             if (x0 <= x && x < x0 + w && y0 <= y && y < y0 + h) {
                 return;
@@ -297,7 +297,7 @@ if (main_canvas.getContext) {
         const prev_pointed = pointed;
 
         for (let i = 0; i < MAX_POPULATION; i++) {
-            [x0, y0, w, h] = COO_SIZ[i];
+            [x0, y0, w, h] = coo_siz[i];
             if (x0 <= x && x < x0 + w && y0 <= y && y < y0 + h) {
                 pointed = i;
                 break;
