@@ -11,10 +11,10 @@ let COO_SIZ;
 // テキストの位置
 let TXT_COO;
 
+let font_size;
+
 // 机に割り振るアルファベット
 const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
-
-const FONTSIZE = SCALE * 1.6
 
 let attend = [true, true, true, true, true, false, false];
 
@@ -83,6 +83,8 @@ const changeScale = (base) => {
         [SCALE * 17, SCALE * 9],
         [SCALE * 17, SCALE * 3]
     ];
+
+    font_size = SCALE * 1.6;
 }
 
 changeScale(20);
@@ -105,7 +107,7 @@ const drawBackGround = () => {
     }
 
     // 各机にアルファベットを割り振る
-    ctx.font = String(FONTSIZE * 0.5) + "px serif";
+    ctx.font = String(font_size * 0.5) + "px serif";
     ctx.fillStyle = "rgb(0, 0, 0)";
     for (i = 0; i < MAX_POPULATION; i++) {
         ctx.fillText(NAMES[i], COO_SIZ[i][0] + SCALE * 0.1, COO_SIZ[i][1] + SCALE * 0.8);
@@ -125,7 +127,7 @@ const startDrawOrders = () => {
     }
 
     // フォントの設定
-    ctx.font = String(FONTSIZE) + "px serif";
+    ctx.font = String(font_size) + "px serif";
     ctx.fillStyle = "rgb(200, 0, 0)";
 
     // イテレータ変数初期化
@@ -165,12 +167,12 @@ const drawTableAndOrder = (table_num, io) => {
         }
     }
     ctx.fillRect(COO_SIZ[table_num][0], COO_SIZ[table_num][1], COO_SIZ[table_num][2], COO_SIZ[table_num][3]);
-    ctx.font = String(FONTSIZE * 0.5) + "px serif";
+    ctx.font = String(font_size * 0.5) + "px serif";
     ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillText(NAMES[table_num], COO_SIZ[table_num][0] + SCALE * 0.1, COO_SIZ[table_num][1] + SCALE * 0.8);
     if (orders_num.includes(table_num)) {
         const coo = TXT_COO[table_num];
-        ctx.font = String(FONTSIZE) + "px serif";
+        ctx.font = String(font_size) + "px serif";
         ctx.fillStyle = "rgb(200, 0, 0)";
         ctx.fillText(orders_num.indexOf(table_num) + 1, coo[0], coo[1]);
     }
@@ -251,7 +253,7 @@ const noPresenter = () => {
     return true;
 }
 
-const canvas = document.getElementById("main_canvas");
+const main_canvas = document.getElementById("main_canvas");
 const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
 
@@ -266,15 +268,15 @@ input_num.addEventListener("keydown", e => {
     }
 });
 
-// canvasのなにか
+// main_canvasのなにか
 let ctx;
 
-if (canvas.getContext) {
-    ctx = canvas.getContext("2d");
+if (main_canvas.getContext) {
+    ctx = main_canvas.getContext("2d");
     // ctx.globalCompositeOperation = "source-in";
     ctx.globalCompositeOperation = "source-over";
 
-    canvas.addEventListener("mousemove", (e) => {
+    main_canvas.addEventListener("mousemove", (e) => {
         if (running) {
             return;
         }
@@ -311,7 +313,7 @@ if (canvas.getContext) {
         }
     });
 
-    canvas.addEventListener("mouseout", (e) => {
+    main_canvas.addEventListener("mouseout", (e) => {
         if (pointed == -1) {
             return;
         }
@@ -319,7 +321,7 @@ if (canvas.getContext) {
         pointed = -1;
     });
 
-    canvas.addEventListener("click", (e) => {
+    main_canvas.addEventListener("click", (e) => {
         if (pointed < 0) {
             return;
         }
@@ -342,4 +344,5 @@ window.addEventListener("resize", () => {
     const height = document.documentElement.clientHeight;
     console.log(width, height);
 });
+
 
