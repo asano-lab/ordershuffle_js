@@ -240,6 +240,16 @@ const setDisabledAll = (b) => {
     }
 }
 
+// checkboxes のチェックが全て外れていれば真
+const isCheckboxesEmpty = () => {
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            return false;
+        }
+    }
+    return true;
+}
+
 const canvas = document.getElementById("main_canvas");
 const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
@@ -315,14 +325,7 @@ if (canvas.getContext) {
             initOrder();
             drawBackGround();
         }
-        let flag = true;
-        for (let i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                flag = false;
-                break;
-            }
-        }
-        shuffle_button.disabled = flag;
+        shuffle_button.disabled = isCheckboxesEmpty();
     });
 
     // チェックボックスクリック時動作の定義
@@ -344,7 +347,7 @@ if (canvas.getContext) {
                     break;
                 }
             }
-            shuffle_button.disabled = flag;
+            shuffle_button.disabled = isCheckboxesEmpty();
         });
     }
 
