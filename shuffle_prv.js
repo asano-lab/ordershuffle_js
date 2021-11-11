@@ -203,10 +203,8 @@ const onShuffleClick = () => {
         const s = (t / 13 | 0) & 0x7fffffff;
         input_num.value = s;
     }
-    // 未入力の場合は0
-    else if (!input_num.value) {
-        input_num.value = 0;
-    }
+    // 実数や空文字は整数に変換
+    input_num.value = parseInt(Number(input_num.value), 10);
 
     const random = new Random(input_num.value);
 
@@ -380,4 +378,5 @@ const resizeCanvas = () => {
 // windowのリサイズを検知
 window.addEventListener("resize", resizeCanvas);
 
+// canvasサイズの初期化
 resizeCanvas();
