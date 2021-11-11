@@ -352,7 +352,7 @@ if (main_canvas.getContext) {
 
 // canvasのリサイズ
 const resizeCanvas = () => {
-    // 実行中は動作しない
+    // シャッフル中は動作しない
     if (running) {
         return;
     }
