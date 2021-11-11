@@ -207,7 +207,7 @@ const onShuffleClick = () => {
 
 // シード設定の変更
 const onSeedCheckClick = () => {
-    input_num.disabled = !seed_check.checked;
+    input_num.disabled = !seed_check.classList.contains('active');
 }
 
 // 順番に関する変数を初期化
@@ -281,7 +281,7 @@ if (canvas.getContext) {
             // 描画を戻す
             drawTableAndOrder(pointed, false);
         }
-        
+
         const prev_pointed = pointed;
 
         for (let i = 0; i < MAX_POPULATION; i++) {
