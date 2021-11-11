@@ -343,13 +343,13 @@ if (main_canvas.getContext) {
 
 // windowのリサイズを検知
 window.addEventListener("resize", () => {
-    const width = document.documentElement.clientWidth;
-    const height = document.documentElement.clientHeight - 100;
+    const wcw = document.documentElement.clientWidth;
+    const wch = document.documentElement.clientHeight - 100;
     let base;
-    if (width * 19 > height * 21) {
-        base = height / 19;
+    if (wcw * 19 > wch * 21) {
+        base = wch / 19;
     } else {
-        base = width / 21;
+        base = wcw / 21;
     }
     base *= 0.9;
     base = base > MIN_SCALE ? base : MIN_SCALE;
