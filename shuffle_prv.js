@@ -66,13 +66,13 @@ const changeScale = (base) => {
     
     // 机の位置と大きさ
     coo_siz = [
-        [0, 0, scale * 3, scale * 5],
-        [0, scale * 6, scale * 3, scale * 5],
-        [0, scale * 12, scale * 3, scale * 5],
-        [scale * 4, scale * 16, scale * 5, scale * 3],
-        [scale * 10, scale * 16, scale * 5, scale * 3],
-        [scale * 16, scale * 6, scale * 3, scale * 5],
-        [scale * 16, 0, scale * 3, scale * 5]
+        [0, 0, scale * 3, scale * 5, scale * 3, scale * 5],
+        [0, scale * 6, scale * 3, scale * 5, scale * 3, scale * 11],
+        [0, scale * 12, scale * 3, scale * 5, scale * 3, scale * 17],
+        [scale * 4, scale * 16, scale * 5, scale * 3, scale * 9, scale * 19],
+        [scale * 10, scale * 16, scale * 5, scale * 3, scale * 15, scale * 19],
+        [scale * 16, scale * 6, scale * 3, scale * 5, scale * 19, scale * 11],
+        [scale * 16, 0, scale * 3, scale * 5, scale * 19, scale * 5]
     ];
     
     // テキストの位置
@@ -290,12 +290,12 @@ if (main_canvas.getContext) {
         }
         const x = e.offsetX;
         const y = e.offsetY;
-        let x0, y0, w, h;
+        let x0, y0, w, h, x1, y1;
         // まずは直前の座標を確認
         if (pointed >= 0) {
-            [x0, y0, w, h] = coo_siz[pointed];
+            [x0, y0, w, h, x1, y1] = coo_siz[pointed];
             // ポインタが変化していない
-            if (x0 <= x && x < x0 + w && y0 <= y && y < y0 + h) {
+            if (x0 <= x && x < x1 && y0 <= y && y < y1) {
                 return;
             }
             // 描画を戻す
@@ -305,8 +305,8 @@ if (main_canvas.getContext) {
         const prev_pointed = pointed;
 
         for (let i = 0; i < MAX_POPULATION; i++) {
-            [x0, y0, w, h] = coo_siz[i];
-            if (x0 <= x && x < x0 + w && y0 <= y && y < y0 + h) {
+            [x0, y0, w, h, x1, y1] = coo_siz[i];
+            if (x0 <= x && x < x1 && y0 <= y && y < y1) {
                 pointed = i;
                 break;
             } else {
