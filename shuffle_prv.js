@@ -28,6 +28,8 @@ const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
 
 const FONTSIZE = SCALE * 1.6
 
+let attend = [true, true, true, true, true, true, false, false];
+
 let population = 0;
 
 // 出席者
@@ -80,7 +82,7 @@ const drawBackGround = () => {
 
     // 机を色分けして描画
     for (i = 0; i < MAX_POPULATION; i++) {
-        if (checkboxes[i].checked) {
+        if (attend[i]) {
             ctx.fillStyle = "rgb(200, 200, 0)";
         } else {
             ctx.fillStyle = "rgb(100, 100, 0)";
@@ -134,7 +136,7 @@ const drawOrders = () => {
 const drawTableAndOrder = (table_num, io) => {
     // in
     if (io) {
-        if (checkboxes[table_num].checked) {
+        if (attend[table_num]) {
             ctx.fillStyle = "rgb(255, 100, 100)";
         } else {
             ctx.fillStyle = "rgb(200, 0, 0)";
@@ -142,7 +144,7 @@ const drawTableAndOrder = (table_num, io) => {
     }
     // out
     else {
-        if (checkboxes[table_num].checked) {
+        if (attend[table_num]) {
             ctx.fillStyle = "rgb(200, 200, 0)";
         } else {
             ctx.fillStyle = "rgb(100, 100, 0)";
@@ -184,7 +186,7 @@ const onShuffleClick = () => {
     let cp_attendees = [];
 
     for (i = 0; i < MAX_POPULATION; i++) {
-        if (checkboxes[i].checked) {
+        if (attend[i]) {
             population++;
             attendees.push(i);
             cp_attendees.push(i);
@@ -218,29 +220,20 @@ const initOrder = () => {
     orders_name = [];
 }
 
-
-// 有効無効の切り替え
-const setDisabledCheckboxes = (b) => {
-    for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].disabled = b;
-    }
-}
-
 // 一括切り替え
 const setDisabledAll = (b) => {
     shuffle_button.disabled = b;
     seed_check.disabled = b;
-    setDisabledCheckboxes(b);
     // シードの入力欄は例外
     if (seed_check.classList.contains('active')) {
         input_num.disabled = b;
     }
 }
 
-// checkboxes のチェックが全て外れていれば真
+// 全員欠席なら真
 const isCheckboxesEmpty = () => {
-    for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
+    for (let i = 0; i < MAX_POPULATION; i++) {
+        if (attend[i]) {
             return false;
         }
     }
@@ -251,9 +244,6 @@ const canvas = document.getElementById("main_canvas");
 const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
 
-// チェックボックスの配列
-// クラス名で取得
-const checkboxes = document.getElementsByClassName("cbc1");
 const seed_check = document.getElementById("check8");
 const input_num = document.getElementById("inum1");
 
@@ -315,38 +305,14 @@ if (canvas.getContext) {
             return;
         }
         if (!population) {
-            checkboxes[pointed].checked = !checkboxes[pointed].checked;
             drawTableAndOrder(pointed, true);
         } else if (confirm("順番をリセットしますか?")) {
-            checkboxes[pointed].checked = !checkboxes[pointed].checked;
             initOrder();
             drawBackGround();
         }
+        attend[pointed] = !attend[pointed];
         shuffle_button.disabled = isCheckboxesEmpty();
     });
-
-    // チェックボックスクリック時動作の定義
-    for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].addEventListener("click", (e) => {
-            // シャッフル済フラグを兼ねる
-            if (!population) {
-                drawTableAndOrder(i, false);
-            } else if (confirm("順番をリセットしますか?")) {
-                initOrder();
-                drawBackGround();
-            } else {
-                e.path[0].checked = !e.path[0].checked;
-            }
-            let flag = true;
-            for (let j = 0; j < checkboxes.length; j++) {
-                if (checkboxes[j].checked) {
-                    flag = false;
-                    break;
-                }
-            }
-            shuffle_button.disabled = isCheckboxesEmpty();
-        });
-    }
 
     drawBackGround();
 }
