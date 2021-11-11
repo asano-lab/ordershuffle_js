@@ -28,7 +28,7 @@ const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
 
 const FONTSIZE = SCALE * 1.6
 
-let attend = [true, true, true, true, true, true, false, false];
+let attend = [true, true, true, true, true, false, false];
 
 let population = 0;
 
@@ -231,7 +231,7 @@ const setDisabledAll = (b) => {
 }
 
 // 全員欠席なら真
-const isCheckboxesEmpty = () => {
+const noPresenter = () => {
     for (let i = 0; i < MAX_POPULATION; i++) {
         if (attend[i]) {
             return false;
@@ -305,13 +305,14 @@ if (canvas.getContext) {
             return;
         }
         if (!population) {
+            attend[pointed] = !attend[pointed];
             drawTableAndOrder(pointed, true);
         } else if (confirm("順番をリセットしますか?")) {
+            attend[pointed] = !attend[pointed];
             initOrder();
             drawBackGround();
         }
-        attend[pointed] = !attend[pointed];
-        shuffle_button.disabled = isCheckboxesEmpty();
+        shuffle_button.disabled = noPresenter();
     });
 
     drawBackGround();
