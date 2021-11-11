@@ -341,8 +341,8 @@ if (main_canvas.getContext) {
     drawBackGround();
 }
 
-// windowのリサイズを検知
-window.addEventListener("resize", () => {
+// canvasのリサイズ
+const resizeAction = () => {
     const wcw = document.documentElement.clientWidth;
     const wch = document.documentElement.clientHeight - 100;
     let base;
@@ -357,4 +357,9 @@ window.addEventListener("resize", () => {
     main_canvas.height = base * 19;
     changeScale(base);
     drawBackGround();
-});
+}
+
+// windowのリサイズを検知
+window.addEventListener("resize", resizeAction);
+
+resizeAction();
