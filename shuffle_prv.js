@@ -32,9 +32,6 @@ let attend = [true, true, true, true, true, false, false];
 
 let population = 0;
 
-// 出席者
-let attendees = [];
-
 // 順番を格納する配列
 let orders_num = [];
 let orders_name = [];
@@ -182,14 +179,12 @@ const onShuffleClick = () => {
 
     // 人数のカウントと出席者の取得
     population = 0;
-    attendees = [];
-    let cp_attendees = [];
+    let attendees = [];
 
     for (i = 0; i < MAX_POPULATION; i++) {
         if (attend[i]) {
             population++;
             attendees.push(i);
-            cp_attendees.push(i);
         }
     }
 
@@ -197,7 +192,7 @@ const onShuffleClick = () => {
     orders_num = [];
     for (i = population; i > 0; i--) {
         r = random.nextInt(0, i);
-        orders_num = orders_num.concat(cp_attendees.splice(r, 1));
+        orders_num = orders_num.concat(attendees.splice(r, 1));
     }
 
     orders_name = []
@@ -215,7 +210,6 @@ const onSeedCheckClick = () => {
 // 順番に関する変数を初期化
 const initOrder = () => {
     population = 0;
-    attendees = [];
     orders_num = [];
     orders_name = [];
 }
