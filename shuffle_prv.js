@@ -166,7 +166,7 @@ const onShuffleClick = () => {
     setDisabledAll(true);
     let i, r;
     // シードの自動設定 (時刻)
-    if (!seed_check.checked) {
+    if (!seed_check.classList.contains('active')) {
         const t = (new Date).getTime();
         const s = (t / 13 | 0) & 0x7fffffff;
         input_num.value = s;
@@ -207,7 +207,7 @@ const onShuffleClick = () => {
 
 // シード設定の変更
 const onSeedCheckClick = () => {
-    input_num.disabled = !seed_check.checked;
+    input_num.disabled = !seed_check.classList.contains('active');
 }
 
 // 順番に関する変数を初期化
@@ -232,7 +232,7 @@ const setDisabledAll = (b) => {
     seed_check.disabled = b;
     setDisabledCheckboxes(b);
     // シードの入力欄は例外
-    if (seed_check.checked) {
+    if (seed_check.classList.contains('active')) {
         input_num.disabled = b;
     }
 }
@@ -282,7 +282,7 @@ if (canvas.getContext) {
             // 描画を戻す
             drawTableAndOrder(pointed, false);
         }
-        
+
         const prev_pointed = pointed;
 
         for (let i = 0; i < MAX_POPULATION; i++) {
