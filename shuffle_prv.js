@@ -37,9 +37,6 @@ let attendees = [];
 let orders_num = [];
 let orders_name = [];
 
-// シード指定するか否か
-let man_seed = false;
-
 let pointed = -1;
 
 // グローバルのイテレータ変数
@@ -169,7 +166,7 @@ const onShuffleClick = () => {
     setDisabledAll(true);
     let i, r;
     // シードの自動設定 (時刻)
-    if (!man_seed) {
+    if (!seed_check.checked) {
         const t = (new Date).getTime();
         const s = (t / 13 | 0) & 0x7fffffff;
         input_num.value = s;
@@ -210,8 +207,7 @@ const onShuffleClick = () => {
 
 // シード設定の変更
 const onSeedCheckClick = () => {
-    man_seed = seed_check.checked;
-    input_num.disabled = !man_seed;
+    input_num.disabled = !seed_check.checked;
 }
 
 // 順番に関する変数を初期化
@@ -234,8 +230,8 @@ const setDisabledAll = (b) => {
     shuffle_button.disabled = b;
     seed_check.disabled = b;
     setDisabledCheckboxes(b);
-    // シードの入力欄だけ例外
-    if (man_seed) {
+    // シードの入力欄は例外
+    if (seed_check.checked) {
         input_num.disabled = b;
     }
 }
