@@ -342,7 +342,9 @@ if (main_canvas.getContext) {
 window.addEventListener("resize", () => {
     const width = document.documentElement.clientWidth;
     const height = document.documentElement.clientHeight;
-    console.log(width, height);
+    let base = (height - 100) / 20;
+    main_canvas.width = base * 21;
+    main_canvas.height = base * 19;
+    changeScale(base);
+    drawBackGround();
 });
-
-
