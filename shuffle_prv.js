@@ -6,6 +6,8 @@ const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
 // 机に割り振るアルファベット
 const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
 
+const MIN_SCALE = 8;
+
 let scale;
 
 // 机の位置と大きさ
@@ -339,10 +341,18 @@ if (main_canvas.getContext) {
     drawBackGround();
 }
 
+// windowのリサイズを検知
 window.addEventListener("resize", () => {
     const width = document.documentElement.clientWidth;
-    const height = document.documentElement.clientHeight;
-    let base = (height - 100) / 20;
+    const height = document.documentElement.clientHeight - 100;
+    let base;
+    if (width * 19 > height * 21) {
+        base = height / 19;
+    } else {
+        base = width / 21;
+    }
+    base *= 0.9;
+    base = base > MIN_SCALE ? base : MIN_SCALE;
     main_canvas.width = base * 21;
     main_canvas.height = base * 19;
     changeScale(base);
