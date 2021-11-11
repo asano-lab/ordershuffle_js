@@ -150,6 +150,18 @@ const drawOrders = () => {
     target.innerHTML = orders_name.slice(0, g_itr);
 }
 
+// 順番描画 (即時)
+const drawOrdersImm = () => {
+    // フォントの設定
+    ctx.font = String(font_size) + "px serif";
+    ctx.fillStyle = "rgb(200, 0, 0)";
+    let x, y;
+    for (let i = 0; i < population; i++) {
+        [x, y] = txt_coo[orders_num[i]];
+        ctx.fillText(i + 1, x, y);
+    }
+}
+
 // 指定した机とその番号を上書き
 const drawTableAndOrder = (table_num, io) => {
     // in
@@ -342,7 +354,12 @@ if (main_canvas.getContext) {
 }
 
 // canvasのリサイズ
-const resizeAction = () => {
+const resizeCanvas = () => {
+    // 実行中は動作しない
+    if (running) {
+        return;
+    }
+    // windowの幅と高さから基準を計算
     const wcw = document.documentElement.clientWidth;
     const wch = document.documentElement.clientHeight - 100;
     let base;
@@ -357,9 +374,10 @@ const resizeAction = () => {
     main_canvas.height = base * 19;
     changeScale(base);
     drawBackGround();
+    drawOrdersImm();
 }
 
 // windowのリサイズを検知
-window.addEventListener("resize", resizeAction);
+window.addEventListener("resize", resizeCanvas);
 
-resizeAction();
+resizeCanvas();
