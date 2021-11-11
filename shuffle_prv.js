@@ -218,6 +218,7 @@ const initOrder = () => {
     orders_name = [];
 }
 
+
 // 有効無効の切り替え
 const setDisabledCheckboxes = (b) => {
     for (let i = 0; i < checkboxes.length; i++) {
