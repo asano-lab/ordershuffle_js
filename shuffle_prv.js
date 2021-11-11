@@ -200,8 +200,7 @@ const onShuffleClick = () => {
     // シードの自動設定 (時刻)
     if (!seed_check.classList.contains('active')) {
         const t = (new Date).getTime();
-        const s = (t / 13 | 0) & 0x7fffffff;
-        input_num.value = s;
+        input_num.value = (t / 13 | 0) & 0x7fffffff;
     }
     // 実数や空文字は整数に変換
     input_num.value = parseInt(Number(input_num.value), 10);
