@@ -319,3 +319,5 @@ if (canvas.getContext) {
 
     drawBackGround();
 }
+
+const smartphone = !!navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
