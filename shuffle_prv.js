@@ -321,3 +321,9 @@ if (canvas.getContext) {
 
     drawBackGround();
 }
+
+window.addEventListener("resize", e => {
+    const width = document.documentElement.clientWidth;
+    const height = document.documentElement.clientHeight;
+    console.log(width, height);
+});
