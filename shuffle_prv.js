@@ -33,6 +33,8 @@ let g_itr;
 
 let running = false;
 
+let man_seed = false;
+
 // シード付き乱数生成
 // 参考：https://sbfl.net/blog/2017/06/01/javascript-reproducible-random/
 class Random {
@@ -191,7 +193,7 @@ const onShuffleClick = () => {
     setDisabledAll(true);
     let i, r;
     // シードの自動設定 (時刻)
-    if (!seed_check.classList.contains('active')) {
+    if (!man_seed) {
         const t = (new Date).getTime();
         input_num.value = (t / 13 | 0) & 0x7fffffff;
     }
@@ -227,7 +229,8 @@ const onShuffleClick = () => {
 
 // シード設定の変更
 const onSeedCheckClick = () => {
-    input_num.disabled = !seed_check.classList.contains('active');
+    man_seed = seed_check.classList.contains('active')
+    input_num.disabled = !man_seed;
 }
 
 // 順番に関する変数を初期化
@@ -242,7 +245,7 @@ const setDisabledAll = (b) => {
     shuffle_button.disabled = b;
     seed_check.disabled = b;
     // シードの入力欄は例外
-    if (seed_check.classList.contains('active')) {
+    if (man_seed) {
         input_num.disabled = b;
     }
 }
