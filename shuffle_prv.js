@@ -121,13 +121,6 @@ const startDrawOrders = () => {
     target.innerHTML = "";
     drawBackGround();
 
-    // 発表者不在
-    if (!population) {
-        running = false;
-        setDisabledAll(false);
-        return;
-    }
-
     // フォントの設定
     ctx.font = String(font_size) + "px serif";
     ctx.fillStyle = "rgb(200, 0, 0)";
@@ -274,7 +267,11 @@ const input_num = document.getElementById("inum1");
 // シード入力欄でEnterキーを押したとき, シャッフルを実行
 input_num.addEventListener("keydown", e => {
     if (e.key == "Enter") {
-        onShuffleClick();
+        // シャッフルボタンが無効の場合は実行しない
+        if (!shuffle_button.disabled) {
+            onShuffleClick();
+        }
+        // リロードしない
         e.preventDefault();
     }
 });
