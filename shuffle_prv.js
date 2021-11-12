@@ -281,14 +281,12 @@ const seed_check = document.getElementById("check8");
 const input_num = document.getElementById("inum1");
 
 // シード入力欄でEnterキーを押したとき, シャッフルを実行
-input_num.addEventListener("keydown", e => {
+input_num.addEventListener("keyup", e => {
     if (e.key == "Enter") {
         // シャッフルボタンが無効の場合は実行しない
         if (!shuffle_button.disabled) {
             onShuffleClick();
         }
-        // リロードしない
-        e.preventDefault();
     }
 });
 
@@ -345,3 +343,8 @@ if (main_canvas.getContext) {
     // canvasサイズの初期化
     onWindowResize();
 }
+
+// リロードしない
+document.getElementsByTagName("form")[0].addEventListener("submit", e => {
+    e.preventDefault();
+});
