@@ -259,7 +259,7 @@ const noPresenter = () => {
 }
 
 // canvasのリサイズ
-const resizeCanvas = () => {
+const onWindowResize = () => {
     // シャッフル中は動作しない
     if (running) {
         return;
@@ -364,7 +364,7 @@ if (main_canvas.getContext) {
         shuffle_button.disabled = noPresenter();
     });
     // リサイズ時の動作を指定
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("resize", onWindowResize);
     // canvasサイズの初期化
-    resizeCanvas();
+    onWindowResize();
 }
