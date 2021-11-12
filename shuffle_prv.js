@@ -348,3 +348,8 @@ if (main_canvas.getContext) {
 document.getElementsByTagName("form")[0].addEventListener("submit", e => {
     e.preventDefault();
 });
+
+// 全選択
+document.getElementById("all_attend_but").addEventListener("click", () => {
+    console.log("clicked!!");
+});
