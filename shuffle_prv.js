@@ -357,15 +357,10 @@ const resizeCanvas = () => {
         return;
     }
     // windowの幅と高さから基準を計算
-    const wcw = document.documentElement.clientWidth;
-    const wch = document.documentElement.clientHeight - 100;
-    let base;
-    if (wcw * 19 > wch * 21) {
-        base = wch / 19;
-    } else {
-        base = wcw / 21;
-    }
-    base *= 0.9;
+    const bw = document.documentElement.clientWidth * 19;
+    const bh = (document.documentElement.clientHeight - 100) * 21;
+    let base = bw < bh ? bw : bh;
+    base *= 0.0024;
     base = base > MIN_SCALE ? base : MIN_SCALE;
     main_canvas.width = base * 21;
     main_canvas.height = base * 19;
