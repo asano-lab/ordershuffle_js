@@ -91,8 +91,6 @@ const changeScale = (base) => {
     font_size = scale * 1.6;
 }
 
-changeScale(20);
-
 // 背景描画
 const drawBackGround = () => {
     let i;
@@ -250,7 +248,7 @@ const setDisabledAll = (b) => {
     }
 }
 
-// 全員欠席なら真
+// 全員欠席なら真を返す
 const noPresenter = () => {
     for (let i = 0; i < MAX_POPULATION; i++) {
         if (attend[i]) {
@@ -258,6 +256,25 @@ const noPresenter = () => {
         }
     }
     return true;
+}
+
+// canvasのリサイズ
+const resizeCanvas = () => {
+    // シャッフル中は動作しない
+    if (running) {
+        return;
+    }
+    // windowの幅と高さから基準を計算
+    const bw = document.documentElement.clientWidth * 19;
+    const bh = (document.documentElement.clientHeight - 100) * 21;
+    let base = bw < bh ? bw : bh;
+    base *= 0.0024;
+    base = base > MIN_SCALE ? base : MIN_SCALE;
+    main_canvas.width = base * 21;
+    main_canvas.height = base * 19;
+    changeScale(base);
+    drawBackGround();
+    drawOrdersImm();
 }
 
 const main_canvas = document.getElementById("main_canvas");
@@ -346,31 +363,8 @@ if (main_canvas.getContext) {
         }
         shuffle_button.disabled = noPresenter();
     });
-
-    drawBackGround();
+    // リサイズ時の動作を指定
+    window.addEventListener("resize", resizeCanvas);
+    // canvasサイズの初期化
+    resizeCanvas();
 }
-
-// canvasのリサイズ
-const resizeCanvas = () => {
-    // シャッフル中は動作しない
-    if (running) {
-        return;
-    }
-    // windowの幅と高さから基準を計算
-    const bw = document.documentElement.clientWidth * 19;
-    const bh = (document.documentElement.clientHeight - 100) * 21;
-    let base = bw < bh ? bw : bh;
-    base *= 0.0024;
-    base = base > MIN_SCALE ? base : MIN_SCALE;
-    main_canvas.width = base * 21;
-    main_canvas.height = base * 19;
-    changeScale(base);
-    drawBackGround();
-    drawOrdersImm();
-}
-
-// windowのリサイズを検知
-window.addEventListener("resize", resizeCanvas);
-
-// canvasサイズの初期化
-resizeCanvas();
