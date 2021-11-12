@@ -88,13 +88,12 @@ const changeScale = (base) => {
 
 // 背景描画
 const drawBackGround = () => {
-    let i;
     // 背景の描画
     ctx.fillStyle = "rgba(65, 105, 225, 1)";
     ctx.fillRect(0, 0, scale * 19, scale * 19);
 
     // 机を色分けして描画
-    for (i = 0; i < MAX_POPULATION; i++) {
+    for (let i = 0; i < MAX_POPULATION; i++) {
         if (attend[i]) {
             ctx.fillStyle = "rgb(200, 200, 0)";
         } else {
@@ -317,7 +316,7 @@ if (main_canvas.getContext) {
         }
     });
 
-    main_canvas.addEventListener("mouseout", (e) => {
+    main_canvas.addEventListener("mouseout", () => {
         if (pointed == -1) {
             return;
         }
