@@ -216,6 +216,8 @@ const initOrder = () => {
 const setDisabledAll = b => {
     shuffle_button.disabled = b;
     seed_check.disabled = b;
+    all_attend_but.disabled = b;
+    all_absent_but.disabled = b;
     // シードの入力欄は例外
     if (man_seed) {
         input_num.disabled = b;
@@ -353,16 +355,26 @@ const all_attend_but = document.getElementById("all_attend_but");
 const all_absent_but = document.getElementById("all_absent_but");
 
 // 全選択, 全解除ともに同じ関数を呼び出す
-const setAttendAll = e => {
+const setAttendAll = b => {
     if (population && !confirm("順番をリセットしますか?")) {
         return;
     }
-    attend = attend.map(() => e.path[0] == all_attend_but);
+    attend = attend.map(() => b);
     initOrder();
     drawBackGround();
 }
 
 // 全選択
-all_attend_but.addEventListener("click", setAttendAll);
+all_attend_but.addEventListener("click", () => {
+    if (population == MAX_POPULATION) {
+        return;
+    }
+    setAttendAll(true);
+    shuffle_button.disabled = false;
+});
+
 // 全解除
-all_absent_but.addEventListener("click", setAttendAll);
+all_absent_but.addEventListener("click", () => {
+    setAttendAll(false);
+    shuffle_button.disabled = true;
+});
