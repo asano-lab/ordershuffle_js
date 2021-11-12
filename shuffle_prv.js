@@ -105,7 +105,6 @@ const drawBackGround = () => {
 
 // 順番の描画開始
 const startDrawOrders = () => {
-    target.innerHTML = "";
     drawBackGround();
 
     // 文字色の設定
@@ -276,7 +275,6 @@ const calcPointed = (e) => {
 }
 
 const main_canvas = document.getElementById("main_canvas");
-const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
 
 const seed_check = document.getElementById("check8");
