@@ -351,5 +351,10 @@ document.getElementsByTagName("form")[0].addEventListener("submit", e => {
 
 // 全選択
 document.getElementById("all_attend_but").addEventListener("click", () => {
-    console.log("clicked!!");
+    if (population && !confirm("順番をリセットしますか?")) {
+        return;
+    }
+    attend = attend.map(() => true);
+    initOrder();
+    drawBackGround();
 });
