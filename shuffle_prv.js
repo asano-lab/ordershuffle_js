@@ -3,7 +3,6 @@ const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
 
-
 const MIN_SCALE = 8;
 
 let scale;
@@ -13,8 +12,6 @@ let coo_siz;
 
 // テキストの位置
 let txt_coo;
-
-let font_size;
 
 let attend = [true, true, true, true, true, false, false];
 
@@ -85,7 +82,8 @@ const changeScale = (base) => {
         [scale * 17, scale * 3]
     ];
 
-    font_size = scale * 1.6;
+    // フォントは一度だけ指定
+    ctx.font = String(scale * 1.6) + "px serif"
 }
 
 // 背景描画
@@ -111,8 +109,7 @@ const startDrawOrders = () => {
     target.innerHTML = "";
     drawBackGround();
 
-    // フォントの設定
-    ctx.font = String(font_size) + "px serif";
+    // 文字色の設定
     ctx.fillStyle = "rgb(200, 0, 0)";
 
     // イテレータ変数初期化
@@ -134,8 +131,7 @@ const drawOrders = () => {
 
 // 順番描画 (即時)
 const drawOrdersImm = () => {
-    // フォントの設定
-    ctx.font = String(font_size) + "px serif";
+    // 文字色
     ctx.fillStyle = "rgb(200, 0, 0)";
     let x, y;
     for (let i = 0; i < population; i++) {
@@ -163,11 +159,8 @@ const drawTableAndOrder = (table_num, io) => {
         }
     }
     ctx.fillRect(coo_siz[table_num][0], coo_siz[table_num][1], coo_siz[table_num][2], coo_siz[table_num][3]);
-    ctx.font = String(font_size * 0.5) + "px serif";
-    ctx.fillStyle = "rgb(0, 0, 0)";
     if (orders_num.includes(table_num)) {
         const coo = txt_coo[table_num];
-        ctx.font = String(font_size) + "px serif";
         ctx.fillStyle = "rgb(200, 0, 0)";
         ctx.fillText(orders_num.indexOf(table_num) + 1, coo[0], coo[1]);
     }
