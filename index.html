@@ -27,13 +27,15 @@
                 </div>
             </div>
         </div>
-        <div class="mb-1" style="overflow: hidden;">
-            <canvas id="main_canvas" width="525" height="475" style="vertical-align: bottom;"></canvas>
+        <div id="canvas_parent">
+            <canvas id="main_canvas" class="mb-1" style="vertical-align: bottom;"></canvas>
         </div>
-        <button id="all_attend_btn" type="button" class="btn btn-outline-secondary">
-            <i class="fas fa-users"></i> 全選択</button>
-        <button id="all_absent_btn" type="button" class="btn btn-outline-secondary">
-            <i class="fas fa-users-slash"></i> 全解除</button>
+        <div>
+            <button id=" all_attend_btn" type="button" class="btn btn-outline-secondary">
+                <i class="fas fa-users"></i> 全選択</button>
+            <button id="all_absent_btn" type="button" class="btn btn-outline-secondary">
+                <i class="fas fa-users-slash"></i> 全解除</button>
+        </div>
     </div>
     <script src="./shuffle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>

@@ -238,8 +238,11 @@ const onWindowResize = () => {
         return;
     }
     // windowの幅と高さから基準を計算
-    const bw = document.documentElement.clientWidth * 21.1;
-    const bh = (document.documentElement.clientHeight - 100) * 21;
+    let bw = document.getElementById('canvas_parent').clientWidth * 22.9;
+    if (bw > 11500) {
+        bw = 11500;
+    }
+    const bh = (document.getElementById('canvas_parent').clientHeight) * 100;
     let base = bw < bh ? bw : bh;
     base *= 0.0023;
     base = base > MIN_SCALE ? base : MIN_SCALE;
