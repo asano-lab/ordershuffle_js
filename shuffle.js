@@ -27,7 +27,6 @@ let g_itr;
 
 let running = false;
 
-let man_seed = false;
 
 // シード付き乱数生成
 // 参考：https://sbfl.net/blog/2017/06/01/javascript-reproducible-random/
@@ -170,7 +169,7 @@ const onShuffleClick = () => {
     setDisabledAll(true);
     let i, r;
     // シードの自動設定 (時刻)
-    if (!man_seed) {
+    if (!manual_seed.classList.contains('active')) {
         const t = (new Date).getTime();
         input_num.value = (t / 13 | 0) & 0x7fffffff;
     }
@@ -202,8 +201,7 @@ const onShuffleClick = () => {
 
 // シード設定の変更
 const onSeedCheckClick = () => {
-    man_seed = seed_check.classList.contains('active')
-    input_num.disabled = !man_seed;
+    input_num.disabled = !manual_seed.classList.contains('active');
 }
 
 // 順番に関する変数を初期化
@@ -215,11 +213,11 @@ const initOrder = () => {
 // 一括切り替え
 const setDisabledAll = b => {
     shuffle_button.disabled = b;
-    seed_check.disabled = b;
-    all_attend_but.disabled = b;
-    all_absent_but.disabled = b;
+    manual_seed.disabled = b;
+    all_attend_btn.disabled = b;
+    all_absent_btn.disabled = b;
     // シードの入力欄は例外
-    if (man_seed) {
+    if (manual_seed.classList.contains('active')) {
         input_num.disabled = b;
     }
 }
@@ -277,13 +275,13 @@ const calcPointed = e => {
 }
 
 const main_canvas = document.getElementById("main_canvas");
-const shuffle_button = document.getElementById("button1");
+const shuffle_button = document.getElementById("shuffle_btn");
 
-const seed_check = document.getElementById("check8");
-const input_num = document.getElementById("inum1");
+const manual_seed = document.getElementById("manual_seed");
+const input_num = document.getElementById("seed_value");
 
-const all_attend_but = document.getElementById("all_attend_but");
-const all_absent_but = document.getElementById("all_absent_but");
+const all_attend_btn = document.getElementById("all_attend_btn");
+const all_absent_btn = document.getElementById("all_absent_btn");
 
 // シード入力欄でEnterキーを押したとき, シャッフルを実行
 input_num.addEventListener("keyup", e => {
@@ -349,11 +347,6 @@ if (main_canvas.getContext) {
     onWindowResize();
 }
 
-// リロードしない
-document.getElementsByTagName("form")[0].addEventListener("submit", e => {
-    e.preventDefault();
-});
-
 // 全選択, 全解除ともに同じ関数を呼び出す
 const setAttendAll = b => {
     if (population && !confirm("順番をリセットしますか?")) {
@@ -365,7 +358,7 @@ const setAttendAll = b => {
 }
 
 // 全選択
-all_attend_but.addEventListener("click", () => {
+all_attend_btn.addEventListener("click", () => {
     if (population == MAX_POPULATION) {
         return;
     }
@@ -374,7 +367,7 @@ all_attend_but.addEventListener("click", () => {
 });
 
 // 全解除
-all_absent_but.addEventListener("click", () => {
+all_absent_btn.addEventListener("click", () => {
     setAttendAll(false);
     shuffle_button.disabled = true;
 });
