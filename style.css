@@ -16,7 +16,6 @@ header{
 footer{
     text-align: right;
     font-size: 0.8rem;
-    line-height: 1rem;
     color: #848f9c;
     margin: 1rem;
     margin-bottom: 0;
@@ -38,7 +37,8 @@ input[type="button"]{
     font-size: 1.5rem;
     color: #0d6efd;
     background-color: transparent;
-    padding: 0 2rem;
+    cursor: pointer;
+    padding: 0 1rem;
     border: 1px solid #0d6efd;
     height: 3rem;
     border-radius: 0.25rem;
