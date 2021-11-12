@@ -34,10 +34,11 @@ const doShuffle = function () {
         arr[i] = i + 1;
     }
     //get seed
-    const seedInput = document.getElementById("seed");
+    let seedInput = document.getElementById("seed");
     if (seedInput.value != "") {
         seed = seedInput.value;
     }
+    console.log(seed);
     const random = new Random(seed);
     //modern Fisher-Yates shuffle algorithm
     for (let i = presenters.length; 1 < i; i--) {
