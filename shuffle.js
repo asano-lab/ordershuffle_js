@@ -200,7 +200,7 @@ const onShuffleClick = () => {
 }
 
 // シード設定の変更
-const onSeedCheckClick = () => {
+const onManualSeedClick = () => {
     input_num.disabled = !manual_seed.classList.contains('active');
 }
 
