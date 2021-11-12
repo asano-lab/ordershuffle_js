@@ -213,7 +213,7 @@ const initOrder = () => {
 }
 
 // 一括切り替え
-const setDisabledAll = (b) => {
+const setDisabledAll = b => {
     shuffle_button.disabled = b;
     seed_check.disabled = b;
     // シードの入力欄は例外
@@ -252,7 +252,7 @@ const onWindowResize = () => {
 }
 
 // ポインタの位置から机を計算
-const calcPointed = (e) => {
+const calcPointed = e => {
     const x = e.offsetX;
     const y = e.offsetY;
     let x0, y0, x1, y1;
@@ -298,7 +298,7 @@ if (main_canvas.getContext) {
     // ctx.globalCompositeOperation = "source-in";
     ctx.globalCompositeOperation = "source-over";
 
-    main_canvas.addEventListener("mousemove", (e) => {
+    main_canvas.addEventListener("mousemove", e => {
         if (running) {
             return;
         }
@@ -323,7 +323,7 @@ if (main_canvas.getContext) {
         pointed = -1;
     });
 
-    main_canvas.addEventListener("click", (e) => {
+    main_canvas.addEventListener("click", e => {
         calcPointed(e);
         if (pointed < 0) {
             return;
@@ -353,7 +353,7 @@ const all_attend_but = document.getElementById("all_attend_but");
 const all_absent_but = document.getElementById("all_absent_but");
 
 // 全選択, 全解除ともに同じ関数を呼び出す
-const setAttendAll = (e) => {
+const setAttendAll = e => {
     if (population && !confirm("順番をリセットしますか?")) {
         return;
     }
