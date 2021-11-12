@@ -349,12 +349,20 @@ document.getElementsByTagName("form")[0].addEventListener("submit", e => {
     e.preventDefault();
 });
 
-// 全選択
-document.getElementById("all_attend_but").addEventListener("click", () => {
+const all_attend_but = document.getElementById("all_attend_but");
+const all_absent_but = document.getElementById("all_absent_but");
+
+// 全選択, 全解除ともに同じ関数を呼び出す
+const setAttendAll = (e) => {
     if (population && !confirm("順番をリセットしますか?")) {
         return;
     }
-    attend = attend.map(() => true);
+    attend = attend.map(() => e.path[0] == all_attend_but);
     initOrder();
     drawBackGround();
-});
+}
+
+// 全選択
+all_attend_but.addEventListener("click", setAttendAll);
+// 全解除
+all_absent_but.addEventListener("click", setAttendAll);
