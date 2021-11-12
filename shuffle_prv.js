@@ -328,6 +328,7 @@ if (main_canvas.getContext) {
     });
 
     main_canvas.addEventListener("click", (e) => {
+        calcPointed(e);
         if (pointed < 0) {
             return;
         }
