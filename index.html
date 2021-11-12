@@ -15,23 +15,23 @@
         <h2>発表の順番決め</h2>
         <div class="row g-1 align-items-center mb-1">
             <div class="col-auto">
-                <button type="button" class="btn btn-outline-primary" id="shuffle_btn" onclick="onShuffleClick();">
+                <button id="shuffle_btn" type="button" class="btn btn-outline-primary" onclick="onShuffleClick();">
                     <i class="fas fa-random"></i> シャッフル</button>
             </div>
             <div class="col-auto">
                 <div class="input-group">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="button"
-                        onclick="onManualSeedClick();" id="manual_seed">
+                    <button id="manual_seed" type="button" class="btn btn-outline-secondary" data-bs-toggle="button"
+                        onclick="onManualSeedClick();">
                         <i class="fas fa-seedling"></i> シード指定</button>
-                    <input type="number" class="form-control" id="seed_value" disabled placeholder="シード値">
+                    <input id="seed_value" type="number" class="form-control" disabled placeholder="シード値">
                 </div>
             </div>
         </div>
         <div><canvas id="main_canvas" width="525" height="475"></canvas></div>
         <div>
-            <button type="button" class="btn btn-outline-secondary" id="all_attend_btn">
+            <button id="all_attend_btn" type="button" class="btn btn-outline-secondary">
                 <i class="fas fa-users"></i> 全選択</button>
-            <button type="button" class="btn btn-outline-secondary" id="all_absent_btn">
+            <button id="all_absent_btn" type="button" class="btn btn-outline-secondary">
                 <i class="fas fa-users-slash"></i> 全解除</button>
         </div>
     </div>
