@@ -3,8 +3,6 @@ const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
 
-// 机に割り振るアルファベット
-const NAMES = ["A", "B", "C", "D", "E", "F", "G"];
 
 const MIN_SCALE = 8;
 
@@ -24,7 +22,6 @@ let population = 0;
 
 // 順番を格納する配列
 let orders_num = [];
-let orders_name = [];
 
 let pointed = -1;
 
@@ -65,7 +62,7 @@ class Random {
 // スケールの変更
 const changeScale = (base) => {
     scale = base;
-    
+
     // 机の位置と大きさ
     coo_siz = [
         [0, 0, scale * 3, scale * 5, scale * 3, scale * 5],
@@ -76,7 +73,7 @@ const changeScale = (base) => {
         [scale * 16, scale * 6, scale * 3, scale * 5, scale * 19, scale * 11],
         [scale * 16, 0, scale * 3, scale * 5, scale * 19, scale * 5]
     ];
-    
+
     // テキストの位置
     txt_coo = [
         [scale, scale * 3],
@@ -107,13 +104,6 @@ const drawBackGround = () => {
         }
         ctx.fillRect(coo_siz[i][0], coo_siz[i][1], coo_siz[i][2], coo_siz[i][3]);
     }
-
-    // 各机にアルファベットを割り振る
-    ctx.font = String(font_size * 0.5) + "px serif";
-    ctx.fillStyle = "rgb(0, 0, 0)";
-    for (i = 0; i < MAX_POPULATION; i++) {
-        ctx.fillText(NAMES[i], coo_siz[i][0] + scale * 0.1, coo_siz[i][1] + scale * 0.8);
-    }
 }
 
 // 順番の描画開始
@@ -140,7 +130,6 @@ const drawOrders = () => {
         running = false;
         setDisabledAll(false);
     }
-    target.innerHTML = orders_name.slice(0, g_itr);
 }
 
 // 順番描画 (即時)
@@ -176,7 +165,6 @@ const drawTableAndOrder = (table_num, io) => {
     ctx.fillRect(coo_siz[table_num][0], coo_siz[table_num][1], coo_siz[table_num][2], coo_siz[table_num][3]);
     ctx.font = String(font_size * 0.5) + "px serif";
     ctx.fillStyle = "rgb(0, 0, 0)";
-    ctx.fillText(NAMES[table_num], coo_siz[table_num][0] + scale * 0.1, coo_siz[table_num][1] + scale * 0.8);
     if (orders_num.includes(table_num)) {
         const coo = txt_coo[table_num];
         ctx.font = String(font_size) + "px serif";
@@ -218,10 +206,6 @@ const onShuffleClick = () => {
         orders_num = orders_num.concat(attendees.splice(r, 1));
     }
 
-    orders_name = []
-    for (i = 0; i < population; i++) {
-        orders_name.push(NAMES[orders_num[i]]);
-    }
     startDrawOrders();
 }
 
@@ -235,7 +219,6 @@ const onSeedCheckClick = () => {
 const initOrder = () => {
     population = 0;
     orders_num = [];
-    orders_name = [];
 }
 
 // 一括切り替え
@@ -313,7 +296,7 @@ if (main_canvas.getContext) {
         let x0, y0, x1, y1;
         // まずは直前の座標を確認
         if (pointed >= 0) {
-            [x0, y0, , ,  x1, y1] = coo_siz[pointed];
+            [x0, y0, , , x1, y1] = coo_siz[pointed];
             // ポインタの位置が変化していない
             if (x0 <= x && x < x1 && y0 <= y && y < y1) {
                 return;
