@@ -282,6 +282,9 @@ const shuffle_button = document.getElementById("button1");
 const seed_check = document.getElementById("check8");
 const input_num = document.getElementById("inum1");
 
+const all_attend_but = document.getElementById("all_attend_but");
+const all_absent_but = document.getElementById("all_absent_but");
+
 // シード入力欄でEnterキーを押したとき, シャッフルを実行
 input_num.addEventListener("keyup", e => {
     if (e.key == "Enter") {
@@ -350,9 +353,6 @@ if (main_canvas.getContext) {
 document.getElementsByTagName("form")[0].addEventListener("submit", e => {
     e.preventDefault();
 });
-
-const all_attend_but = document.getElementById("all_attend_but");
-const all_absent_but = document.getElementById("all_absent_but");
 
 // 全選択, 全解除ともに同じ関数を呼び出す
 const setAttendAll = b => {
