@@ -17,7 +17,7 @@ class Random {
         this.y = this.z;
         this.z = this.s;
         this.s = (this.s ^ (this.s >>> 19)) ^ (t ^ (t >>> 8));
-        return (Math.abs(this.s)) % (max + 1);
+        return Math.abs(this.s) % max;
     }
 }
 
