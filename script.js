@@ -52,6 +52,11 @@ const doShuffle = function () {
 const init = function () {
     document.getElementById("seed").setAttribute("placeholder", seed);
     document.getElementById("shuffleBtn").addEventListener("click", doShuffle);
+    document.addEventListener("keyup", function(e){
+        if(e.key === "Enter"){
+            doShuffle();
+        }
+    })
     const desks = document.getElementsByClassName("desk");
     for (const desk of desks) {
         desk.addEventListener("click", function () {

@@ -12,9 +12,60 @@ footer{
     color: #848f9c;
     margin-top: 2rem;
 }
+label{
+    display: inline-block;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #495057;
+    font-size: 1.5rem;
+}
+input[type="button"]{
+    display: inline-block;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #0d6efd;
+    background-color: transparent;
+    padding: 0 2rem;
+    border: 1px solid #0d6efd;
+    height: 3rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out,
+        box-shadow .15s ease-in-out;
+}
+input[type="button"]:hover{
+    background-color: #0d6efd;
+    color: #ffffff;
+    box-shadow: 1px 1px 3px 1px #848f9c;
+}
+input[type="button"]::before{
+    content: "\f074";
+}
+input[type="number"]{
+    display: inline-block;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #495057;
+    font-size: 1.5rem;
+    background-color: #ffffff;
+    padding: 0 0.5rem;
+    border: 1px solid #495057;
+    height: 3rem;
+    width: 12rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,
+        outline .15s ease-in-out;
+}
+input[type="number"]:focus{
+    outline: none;
+    box-shadow: 1px 1px 3px 1px #848f9c;
+}
+
 #room{
     border: 1px solid #495057;
-    background-color: #74b9cf;
+    background-color: #6a95cc;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
     grid-template-rows: 2fr 2fr 2fr 1fr;
@@ -25,13 +76,22 @@ footer{
     margin: 10px;
     background-color: #abbbcc;
     border-radius: 2px;
-    font-size: 3rem;
     display: grid;
     place-items: center;
+    transition: color .15s ease-in-out,
+    background-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
 }
 .desk div{
-    color: #db000e;
+    color: #c7243a;
     font-weight: bold;
+    font-size: 3rem;
+}
+.desk:hover{
+    box-shadow: 2px 2px 6px 1px #495057;
+}
+.present{
+    background-color: #e6842f;
 }
     
 .desk:nth-child(1){
@@ -76,11 +136,6 @@ footer{
     grid-row-start: 4;
     grid-row-end: 5;
 }
-.desk:hover{
-    box-shadow: 2px 2px 6px 1px #495057;
-}
-.present{
-    background-color: #cc9029;
-}
+
 
 
