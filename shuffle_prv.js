@@ -252,6 +252,29 @@ const onWindowResize = () => {
     drawOrdersImm();
 }
 
+// ポインタの位置から机を計算
+const calcPointed = (e) => {
+    const x = e.offsetX;
+    const y = e.offsetY;
+    let x0, y0, x1, y1;
+    // まずは直前の座標を確認
+    if (pointed >= 0) {
+        [x0, y0, , , x1, y1] = coo_siz[pointed];
+        // ポインタの位置が変化していない
+        if (x0 <= x && x < x1 && y0 <= y && y < y1) {
+            return;
+        }
+    }
+    pointed = -1;
+    for (let i = 0; i < MAX_POPULATION; i++) {
+        [x0, y0, , , x1, y1] = coo_siz[i];
+        if (x0 <= x && x < x1 && y0 <= y && y < y1) {
+            pointed = i;
+            return;
+        }
+    }
+}
+
 const main_canvas = document.getElementById("main_canvas");
 const target = document.getElementById("output");
 const shuffle_button = document.getElementById("button1");
@@ -283,33 +306,13 @@ if (main_canvas.getContext) {
         if (running) {
             return;
         }
-        const x = e.offsetX;
-        const y = e.offsetY;
-        let x0, y0, x1, y1;
-        // まずは直前の座標を確認
-        if (pointed >= 0) {
-            [x0, y0, , , x1, y1] = coo_siz[pointed];
-            // ポインタの位置が変化していない
-            if (x0 <= x && x < x1 && y0 <= y && y < y1) {
-                return;
-            }
-            // ポインタの位置が変化
-            drawTableAndOrder(pointed, false);
-        }
-
         const prev_pointed = pointed;
+        calcPointed(e);
 
-        for (let i = 0; i < MAX_POPULATION; i++) {
-            [x0, y0, , , x1, y1] = coo_siz[i];
-            if (x0 <= x && x < x1 && y0 <= y && y < y1) {
-                pointed = i;
-                break;
-            } else {
-                pointed = -1;
-            }
-        }
         if (prev_pointed == pointed) {
             return;
+        } else if (prev_pointed >= 0) {
+            drawTableAndOrder(prev_pointed, false);
         }
         if (pointed >= 0) {
             drawTableAndOrder(pointed, true);
