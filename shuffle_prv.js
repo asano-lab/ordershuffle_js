@@ -1,7 +1,7 @@
 
 const MAX_POPULATION = 7;
 
-const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i);
+const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
 
 const MIN_SCALE = 8;
 
@@ -242,7 +242,7 @@ const onWindowResize = () => {
     const bw = document.documentElement.clientWidth * 19;
     const bh = (document.documentElement.clientHeight - 100) * 21;
     let base = bw < bh ? bw : bh;
-    base *= 0.0024;
+    base *= 0.0023;
     base = base > MIN_SCALE ? base : MIN_SCALE;
     main_canvas.width = base * 21;
     main_canvas.height = base * 19;
