@@ -1,4 +1,3 @@
-
 const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
@@ -239,7 +238,7 @@ const onWindowResize = () => {
         return;
     }
     // windowの幅と高さから基準を計算
-    const bw = document.documentElement.clientWidth * 19;
+    const bw = document.documentElement.clientWidth * 20.6;
     const bh = (document.documentElement.clientHeight - 100) * 21;
     let base = bw < bh ? bw : bh;
     base *= 0.0023;
