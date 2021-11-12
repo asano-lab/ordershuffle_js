@@ -246,8 +246,8 @@ const onWindowResize = () => {
     let base = bw < bh ? bw : bh;
     base *= 0.0023;
     base = base > MIN_SCALE ? base : MIN_SCALE;
-    main_canvas.width = base * 21;
-    main_canvas.height = base * 19;
+    canvas.width = base * 21;
+    canvas.height = base * 19;
     changeScale(base);
     drawBackGround();
     drawOrdersImm();
@@ -276,7 +276,7 @@ const calcPointed = e => {
     }
 }
 
-const main_canvas = document.getElementById("main_canvas");
+const canvas = document.getElementById("canvas");
 const shuffle_button = document.getElementById("shuffle_btn");
 
 const manual_seed = document.getElementById("manual_seed");
@@ -295,15 +295,15 @@ input_num.addEventListener("keyup", e => {
     }
 });
 
-// main_canvasのなにか
+// canvasのなにか
 let ctx;
 
-if (main_canvas.getContext) {
-    ctx = main_canvas.getContext("2d");
+if (canvas.getContext) {
+    ctx = canvas.getContext("2d");
     // ctx.globalCompositeOperation = "source-in";
     ctx.globalCompositeOperation = "source-over";
 
-    main_canvas.addEventListener("mousemove", e => {
+    canvas.addEventListener("mousemove", e => {
         if (running) {
             return;
         }
@@ -320,7 +320,7 @@ if (main_canvas.getContext) {
         }
     });
 
-    main_canvas.addEventListener("mouseout", () => {
+    canvas.addEventListener("mouseout", () => {
         if (pointed == -1) {
             return;
         }
@@ -328,7 +328,7 @@ if (main_canvas.getContext) {
         pointed = -1;
     });
 
-    main_canvas.addEventListener("click", e => {
+    canvas.addEventListener("click", e => {
         calcPointed(e);
         if (running || pointed < 0) {
             return;
