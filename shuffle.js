@@ -231,10 +231,6 @@ const noPresenter = () => {
     return true;
 }
 
-const above_canvas = document.getElementById("above_canvas");
-const below_canvas = document.getElementById("below_canvas");
-const canvas_parent = document.getElementById("canvas_parent");
-
 // canvasのリサイズ
 const onWindowResize = () => {
     // シャッフル中は動作しない
@@ -243,12 +239,11 @@ const onWindowResize = () => {
     }
     // 幅と高さから基準を計算
     let bw = canvas_parent.clientWidth * 22.9;
-    bw = bw < 10000 ? bw : 10000;
+    // bw = bw < 10000 ? bw : 10000;
     let bh = document.documentElement.clientHeight;
     // canvas以外の高さを引いてcanvasの高さを計算
     bh -= above_canvas.clientHeight + below_canvas.clientHeight;
     bh *= 20.72;
-    // console.log(bw, bh);
     let base = bw < bh ? bw : bh;
     base *= 0.0023;
     base = base > MIN_SCALE ? base : MIN_SCALE;
@@ -281,6 +276,10 @@ const calcPointed = e => {
         }
     }
 }
+
+const above_canvas = document.getElementById("above_canvas");
+const below_canvas = document.getElementById("below_canvas");
+const canvas_parent = document.getElementById("canvas_parent");
 
 const canvas = document.getElementById("canvas");
 const shuffle_button = document.getElementById("shuffle_btn");
