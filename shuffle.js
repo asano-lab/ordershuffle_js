@@ -232,6 +232,7 @@ const noPresenter = () => {
 }
 
 const above_canvas = document.getElementById("above_canvas");
+const below_canvas = document.getElementById("below_canvas");
 
 // canvasのリサイズ
 const onWindowResize = () => {
@@ -245,13 +246,12 @@ const onWindowResize = () => {
         bw = 10000;
     }
     // const bh = (document.getElementById('canvas_parent').clientHeight) * 100;
-    console.log(above_canvas.clientHeight);
+    console.log(above_canvas.clientHeight, below_canvas.clientHeight);
     const bh = document.documentElement.clientHeight * 18;
     // console.log(bw, bh);
     let base = bw < bh ? bw : bh;
     base *= 0.0023;
     base = base > MIN_SCALE ? base : MIN_SCALE;
-    console.log(base);
     canvas.width = base * 21;
     canvas.height = base * 19;
     changeScale(base);
