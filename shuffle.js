@@ -2,8 +2,6 @@ const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
 
-const MIN_SCALE = 8;
-
 let scale;
 
 // 机の位置と大きさ
@@ -55,8 +53,7 @@ class Random {
 }
 
 // スケールの変更
-const changeScale = (base) => {
-    scale = base;
+const changeScale = (scale) => {
 
     // 机の位置と大きさ
     coo_siz = [
@@ -213,8 +210,8 @@ const initOrder = () => {
 const setDisabledAll = b => {
     shuffle_button.disabled = b;
     manual_seed.disabled = b;
-    all_attend_btn.disabled = b;
-    all_absent_btn.disabled = b;
+    all_attend_button.disabled = b;
+    all_absent_button.disabled = b;
     // シードの入力欄は例外
     if (manual_seed.classList.contains('active')) {
         seed_value.disabled = b;
@@ -238,18 +235,13 @@ const onWindowResize = () => {
         return;
     }
     // 幅と高さから基準を計算
-    let bw = canvas_parent.clientWidth * 22.9;
-    // bw = bw < 10000 ? bw : 10000;
-    let bh = document.documentElement.clientHeight;
+    let bw = canvas_parent.clientWidth * 0.05267;
     // canvas以外の高さを引いてcanvasの高さを計算
-    bh -= above_canvas.clientHeight + below_canvas.clientHeight;
-    bh *= 20.72;
-    let base = bw < bh ? bw : bh;
-    base *= 0.0023;
-    base = base > MIN_SCALE ? base : MIN_SCALE;
-    canvas.width = base * 21;
-    canvas.height = base * 19;
-    changeScale(base);
+    let bh = (document.documentElement.clientHeight - above_canvas.clientHeight - below_canvas.clientHeight) * 0.047656;
+    scale = bw < bh ? bw : bh;
+    canvas.width = scale * 21;
+    canvas.height = scale * 19;
+    changeScale(scale);
     drawBackGround();
     drawOrdersImm();
 }
@@ -282,13 +274,13 @@ const below_canvas = document.getElementById("below_canvas");
 const canvas_parent = document.getElementById("canvas_parent");
 
 const canvas = document.getElementById("canvas");
-const shuffle_button = document.getElementById("shuffle_btn");
+const shuffle_button = document.getElementById("shuffle_button");
 
 const manual_seed = document.getElementById("manual_seed");
 const seed_value = document.getElementById("seed_value");
 
-const all_attend_btn = document.getElementById("all_attend_btn");
-const all_absent_btn = document.getElementById("all_absent_btn");
+const all_attend_button = document.getElementById("all_attend_button");
+const all_absent_button = document.getElementById("all_absent_button");
 
 // シード入力欄でEnterキーを押したとき, シャッフルを実行
 seed_value.addEventListener("keyup", e => {
@@ -365,7 +357,7 @@ const setAttendAll = b => {
 }
 
 // 全選択
-all_attend_btn.addEventListener("click", () => {
+all_attend_button.addEventListener("click", () => {
     if (population == MAX_POPULATION) {
         return;
     }
@@ -374,7 +366,7 @@ all_attend_btn.addEventListener("click", () => {
 });
 
 // 全解除
-all_absent_btn.addEventListener("click", () => {
+all_absent_button.addEventListener("click", () => {
     setAttendAll(false);
     shuffle_button.disabled = true;
 });
