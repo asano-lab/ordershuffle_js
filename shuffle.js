@@ -238,17 +238,13 @@ const onWindowResize = () => {
         return;
     }
     // 幅と高さから基準を計算
-    let bw = document.documentElement.clientWidth * 21;
-    let bh = document.documentElement.clientHeight;
-    // canvas以外の高さを引いてcanvasの高さを計算
-    bh -= above_canvas.clientHeight + below_canvas.clientHeight;
-    bh *= 19;
-    let base = bw < bh ? bw : bh;
-    base *= 0.0026;
-    base = base > MIN_SCALE ? base : MIN_SCALE;
-    canvas.width = base * 21;
-    canvas.height = base * 19;
-    changeScale(base);
+    let bw = document.documentElement.clientWidth * 0.044;
+    let bh = (document.documentElement.clientHeight - above_canvas.clientHeight - below_canvas.clientHeight) * 0.044;
+    let scale = bw < bh ? bw : bh;
+    scale = scale > MIN_SCALE ? scale : MIN_SCALE;
+    canvas.width = scale * 19;
+    canvas.height = scale * 19;
+    changeScale(scale);
     drawBackGround();
     drawOrdersImm();
 }
