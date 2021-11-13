@@ -170,12 +170,12 @@ const onShuffleClick = () => {
     // シードの自動設定 (時刻)
     if (!manual_seed.classList.contains('active')) {
         const t = (new Date).getTime();
-        input_num.value = (t / 13 | 0) & 0x7fffffff;
+        seed_value.value = (t / 13 | 0) & 0x7fffffff;
     }
     // 実数や空文字は整数に変換
-    input_num.value = parseInt(Number(input_num.value), 10);
+    seed_value.value = parseInt(Number(seed_value.value), 10);
 
-    const random = new Random(input_num.value);
+    const random = new Random(seed_value.value);
 
     // 人数のカウントと出席者の取得
     population = 0;
@@ -200,7 +200,7 @@ const onShuffleClick = () => {
 
 // シード設定の変更
 const onManualSeedClick = () => {
-    input_num.disabled = !manual_seed.classList.contains('active');
+    seed_value.disabled = !manual_seed.classList.contains('active');
 }
 
 // 順番に関する変数を初期化
@@ -217,7 +217,7 @@ const setDisabledAll = b => {
     all_absent_btn.disabled = b;
     // シードの入力欄は例外
     if (manual_seed.classList.contains('active')) {
-        input_num.disabled = b;
+        seed_value.disabled = b;
     }
 }
 
@@ -280,13 +280,13 @@ const canvas = document.getElementById("canvas");
 const shuffle_button = document.getElementById("shuffle_btn");
 
 const manual_seed = document.getElementById("manual_seed");
-const input_num = document.getElementById("seed_value");
+const seed_value = document.getElementById("seed_value");
 
 const all_attend_btn = document.getElementById("all_attend_btn");
 const all_absent_btn = document.getElementById("all_absent_btn");
 
 // シード入力欄でEnterキーを押したとき, シャッフルを実行
-input_num.addEventListener("keyup", e => {
+seed_value.addEventListener("keyup", e => {
     if (e.key == "Enter") {
         // シャッフルボタンが無効の場合は実行しない
         if (!shuffle_button.disabled) {
