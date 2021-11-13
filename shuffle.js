@@ -233,6 +233,7 @@ const noPresenter = () => {
 
 const above_canvas = document.getElementById("above_canvas");
 const below_canvas = document.getElementById("below_canvas");
+const canvas_parent = document.getElementById("canvas_parent");
 
 // canvasのリサイズ
 const onWindowResize = () => {
@@ -240,14 +241,13 @@ const onWindowResize = () => {
     if (running) {
         return;
     }
-    // windowの幅と高さから基準を計算
-    let bw = document.getElementById('canvas_parent').clientWidth * 22.9;
-    if (bw > 10000) {
-        bw = 10000;
-    }
-    // const bh = (document.getElementById('canvas_parent').clientHeight) * 100;
-    console.log(above_canvas.clientHeight, below_canvas.clientHeight);
-    const bh = document.documentElement.clientHeight * 18;
+    // 幅と高さから基準を計算
+    let bw = canvas_parent.clientWidth * 22.9;
+    bw = bw < 10000 ? bw : 10000;
+    let bh = document.documentElement.clientHeight;
+    // canvas以外の高さを引いてcanvasの高さを計算
+    bh -= above_canvas.clientHeight + below_canvas.clientHeight;
+    bh *= 20.72;
     // console.log(bw, bh);
     let base = bw < bh ? bw : bh;
     base *= 0.0023;
