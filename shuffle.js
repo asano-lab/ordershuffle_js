@@ -2,7 +2,7 @@ const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
 
-const MIN_SCALE = 7;
+const MIN_SCALE = 8;
 
 let scale;
 
@@ -55,8 +55,7 @@ class Random {
 }
 
 // スケールの変更
-const changeScale = (scale) => {
-
+const changeScale = () => {
     // 机の位置と大きさ
     coo_siz = [
         [0, 0, scale * 3, scale * 5, scale * 3, scale * 5],
@@ -237,14 +236,14 @@ const onWindowResize = () => {
         return;
     }
     // 幅と高さから基準を計算
-    const bw = document.documentElement.clientWidth * 0.0546;
-    // canvas以外の高さを引いてcanvasの高さを計算
-    const bh = (document.documentElement.clientHeight - above_canvas.clientHeight - below_canvas.clientHeight) * 0.0494;
-    let scale = bw < bh ? bw : bh;
+    // let bw = canvas_parent.clientWidth * 0.05267;
+    let bw = document.documentElement.clientWidth;
+    let bh = document.documentElement.clientHeight - above_canvas.offsetHeight - below_canvas.offsetHeight - 10;
+    scale = (bw < bh ? bw : bh) * 0.044;
     scale = scale > MIN_SCALE ? scale : MIN_SCALE;
-    canvas.width = scale * 21;
+    canvas.width = scale * 19;
     canvas.height = scale * 19;
-    changeScale(scale);
+    changeScale();
     drawBackGround();
     drawOrdersImm();
 }
