@@ -273,7 +273,6 @@ const calcPointed = e => {
 
 const above_canvas = document.getElementById("above_canvas");
 const below_canvas = document.getElementById("below_canvas");
-const canvas_parent = document.getElementById("canvas_parent");
 
 const canvas = document.getElementById("canvas");
 const shuffle_button = document.getElementById("shuffle_button");
