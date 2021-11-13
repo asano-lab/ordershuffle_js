@@ -2,6 +2,8 @@ const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
 
+const MIN_SCALE = 8;
+
 let scale;
 
 // 机の位置と大きさ
@@ -237,8 +239,9 @@ const onWindowResize = () => {
     // 幅と高さから基準を計算
     let bw = canvas_parent.clientWidth * 0.05267;
     // canvas以外の高さを引いてcanvasの高さを計算
-    let bh = (document.documentElement.clientHeight - above_canvas.clientHeight - below_canvas.clientHeight) * 0.047656;
+    let bh = (document.documentElement.clientHeight - above_canvas.offsetHeight - below_canvas.offsetHeight - 10) * 0.047656;
     scale = bw < bh ? bw : bh;
+    scale = scale > MIN_SCALE ? scale : MIN_SCALE;
     canvas.width = scale * 21;
     canvas.height = scale * 19;
     changeScale(scale);
