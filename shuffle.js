@@ -55,8 +55,7 @@ class Random {
 }
 
 // スケールの変更
-const changeScale = (base) => {
-    scale = base;
+const changeScale = (scale) => {
 
     // 机の位置と大きさ
     coo_siz = [
@@ -213,8 +212,8 @@ const initOrder = () => {
 const setDisabledAll = b => {
     shuffle_button.disabled = b;
     manual_seed.disabled = b;
-    all_attend_btn.disabled = b;
-    all_absent_btn.disabled = b;
+    all_attend_button.disabled = b;
+    all_absent_button.disabled = b;
     // シードの入力欄は例外
     if (manual_seed.classList.contains('active')) {
         seed_value.disabled = b;
@@ -239,11 +238,10 @@ const onWindowResize = () => {
     }
     // 幅と高さから基準を計算
     let bw = document.documentElement.clientWidth;
-    let bh = document.documentElement.clientHeight - above_canvas.clientHeight - below_canvas.clientHeight;
+    let bh = document.documentElement.clientHeight - above_canvas.offsetHeight - below_canvas.offsetHeight - 10;
     let scale = (bw < bh ? bw : bh) * 0.044;
     scale = scale > MIN_SCALE ? scale : MIN_SCALE;
-    canvas.width = scale * 19;
-    canvas.height = scale * 19;
+    canvas.height = canvas.width = scale * 19;
     changeScale(scale);
     drawBackGround();
     drawOrdersImm();
@@ -276,13 +274,13 @@ const above_canvas = document.getElementById("above_canvas");
 const below_canvas = document.getElementById("below_canvas");
 
 const canvas = document.getElementById("canvas");
-const shuffle_button = document.getElementById("shuffle_btn");
+const shuffle_button = document.getElementById("shuffle_button");
 
 const manual_seed = document.getElementById("manual_seed");
 const seed_value = document.getElementById("seed_value");
 
-const all_attend_btn = document.getElementById("all_attend_btn");
-const all_absent_btn = document.getElementById("all_absent_btn");
+const all_attend_button = document.getElementById("all_attend_button");
+const all_absent_button = document.getElementById("all_absent_button");
 
 // シード入力欄でEnterキーを押したとき, シャッフルを実行
 seed_value.addEventListener("keyup", e => {
@@ -359,7 +357,7 @@ const setAttendAll = b => {
 }
 
 // 全選択
-all_attend_btn.addEventListener("click", () => {
+all_attend_button.addEventListener("click", () => {
     if (population == MAX_POPULATION) {
         return;
     }
@@ -368,7 +366,7 @@ all_attend_btn.addEventListener("click", () => {
 });
 
 // 全解除
-all_absent_btn.addEventListener("click", () => {
+all_absent_button.addEventListener("click", () => {
     setAttendAll(false);
     shuffle_button.disabled = true;
 });
