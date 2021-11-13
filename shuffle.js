@@ -238,9 +238,9 @@ const onWindowResize = () => {
         return;
     }
     // 幅と高さから基準を計算
-    let bw = document.documentElement.clientWidth * 0.044;
-    let bh = (document.documentElement.clientHeight - above_canvas.clientHeight - below_canvas.clientHeight) * 0.044;
-    let scale = bw < bh ? bw : bh;
+    let bw = document.documentElement.clientWidth;
+    let bh = document.documentElement.clientHeight - above_canvas.clientHeight - below_canvas.clientHeight;
+    let scale = (bw < bh ? bw : bh) * 0.044;
     scale = scale > MIN_SCALE ? scale : MIN_SCALE;
     canvas.width = scale * 19;
     canvas.height = scale * 19;
