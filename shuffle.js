@@ -2,7 +2,7 @@ const MAX_POPULATION = 7;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
 
-const MIN_SCALE = 8;
+const MIN_SCALE = 7;
 
 let scale;
 
@@ -238,14 +238,13 @@ const onWindowResize = () => {
         return;
     }
     // 幅と高さから基準を計算
-    let bw = canvas_parent.clientWidth * 22.9;
-    // bw = bw < 10000 ? bw : 10000;
+    let bw = document.documentElement.clientWidth * 21;
     let bh = document.documentElement.clientHeight;
     // canvas以外の高さを引いてcanvasの高さを計算
     bh -= above_canvas.clientHeight + below_canvas.clientHeight;
-    bh *= 20.72;
+    bh *= 19;
     let base = bw < bh ? bw : bh;
-    base *= 0.0023;
+    base *= 0.0026;
     base = base > MIN_SCALE ? base : MIN_SCALE;
     canvas.width = base * 21;
     canvas.height = base * 19;
@@ -279,7 +278,6 @@ const calcPointed = e => {
 
 const above_canvas = document.getElementById("above_canvas");
 const below_canvas = document.getElementById("below_canvas");
-const canvas_parent = document.getElementById("canvas_parent");
 
 const canvas = document.getElementById("canvas");
 const shuffle_button = document.getElementById("shuffle_btn");
