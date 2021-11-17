@@ -196,11 +196,6 @@ const onShuffleClick = () => {
     startDrawOrders();
 }
 
-// シード設定の変更
-const onManualSeedClick = () => {
-    seed_value.disabled = !manual_seed.classList.contains('active');
-}
-
 // 順番に関する変数を初期化
 const initOrder = () => {
     population = 0;
@@ -291,6 +286,11 @@ seed_value.addEventListener("keyup", e => {
             onShuffleClick();
         }
     }
+});
+
+// シード手入力ボタンのクリック時動作
+manual_seed.addEventListener("click", () => {
+    seed_value.disabled = !manual_seed.classList.contains('active');
 });
 
 // canvasのなにか
