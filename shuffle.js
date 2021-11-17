@@ -278,6 +278,9 @@ const seed_value = document.getElementById("seed_value");
 const all_attend_button = document.getElementById("all_attend_button");
 const all_absent_button = document.getElementById("all_absent_button");
 
+// シャッフルボタンのクリック時動作
+shuffle_button.addEventListener("click", onShuffleClick);
+
 // シード入力欄でEnterキーを押したとき, シャッフルを実行
 seed_value.addEventListener("keyup", e => {
     if (e.key == "Enter") {
