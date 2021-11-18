@@ -233,7 +233,7 @@ const onWindowResize = () => {
     // 幅と高さから基準を計算
     // let bw = canvas_parent.clientWidth * 0.05267;
     let bw = document.getElementById("canvas_parent").clientWidth;
-    let bh = document.documentElement.clientHeight - above_canvas.offsetHeight - below_canvas.offsetHeight - 10;
+    let bh = document.documentElement.clientHeight - above_canvas.offsetHeight - below_canvas.offsetHeight - 20;
     scale = (bw < bh ? bw : bh) / 19;
     scale = scale > MIN_SCALE ? scale : MIN_SCALE;
     canvas.width = scale * 19;
