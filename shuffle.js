@@ -26,6 +26,7 @@ let g_itr;
 
 let running = false;
 
+let manual_seed_flag;
 
 // シード付き乱数生成
 // 参考：https://sbfl.net/blog/2017/06/01/javascript-reproducible-random/
@@ -166,7 +167,7 @@ const onShuffleClick = () => {
     setDisabledAll(true);
     let i, r;
     // シードの自動設定 (時刻)
-    if (!manual_seed.classList.contains('active')) {
+    if (!manual_seed_flag) {
         const t = (new Date).getTime();
         seed_value.value = (t / 13 | 0) & 0x7fffffff;
     }
@@ -209,7 +210,7 @@ const setDisabledAll = b => {
     all_attend_button.disabled = b;
     all_absent_button.disabled = b;
     // シードの入力欄は例外
-    if (manual_seed.classList.contains('active')) {
+    if (manual_seed_flag) {
         seed_value.disabled = b;
     }
 }
@@ -292,7 +293,8 @@ seed_value.addEventListener("keyup", e => {
 
 // シード手入力ボタンのクリック時動作
 manual_seed.addEventListener("click", () => {
-    seed_value.disabled = !manual_seed.classList.contains('active');
+    manual_seed_flag = manual_seed.classList.contains('active');
+    seed_value.disabled = !manual_seed_flag;
 });
 
 // canvasのなにか
