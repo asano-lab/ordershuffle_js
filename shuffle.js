@@ -4,13 +4,13 @@ const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i
 
 const MIN_SCALE = 8;
 
-let scale;
+let scale = 10;
 
 // 机の位置と大きさ
-let coo_siz;
+let coo_siz = [[0]];
 
 // テキストの位置
-let txt_coo;
+let txt_coo = [[0]];
 
 let attend = [true, true, true, true, true, false, false];
 
@@ -26,7 +26,7 @@ let g_itr;
 
 let running = false;
 
-let manual_seed_flag;
+let manual_seed_flag = false;
 
 // シード付き乱数生成
 // 参考：https://sbfl.net/blog/2017/06/01/javascript-reproducible-random/
@@ -265,6 +265,12 @@ const calcPointed = e => {
     }
 }
 
+// シード手入力ボタンのクリック時動作
+const onManualSeedClick = () => {
+    manual_seed_flag = manual_seed.classList.contains('active');
+    seed_value.disabled = !manual_seed_flag;
+}
+
 const above_canvas = document.getElementById("above_canvas");
 const below_canvas = document.getElementById("below_canvas");
 
@@ -292,10 +298,7 @@ seed_value.addEventListener("keyup", e => {
 });
 
 // シード手入力ボタンのクリック時動作
-manual_seed.addEventListener("click", () => {
-    manual_seed_flag = manual_seed.classList.contains('active');
-    seed_value.disabled = !manual_seed_flag;
-});
+manual_seed.addEventListener("click", onManualSeedClick);
 
 // canvasのなにか
 let ctx;
@@ -375,3 +378,5 @@ all_absent_button.addEventListener("click", () => {
     setAttendAll(false);
     shuffle_button.disabled = true;
 });
+
+onManualSeedClick();
