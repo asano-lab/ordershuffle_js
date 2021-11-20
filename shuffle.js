@@ -231,13 +231,11 @@ const onWindowResize = () => {
         return;
     }
     // 幅と高さから基準を計算
-    // let bw = canvas_parent.clientWidth * 0.05267;
-    let bw = document.getElementById("canvas_parent").clientWidth;
-    let bh = document.documentElement.clientHeight - above_canvas.offsetHeight - below_canvas.offsetHeight - 20;
+    const bw = canvas_parent.clientWidth;
+    const bh = document.documentElement.clientHeight - above_canvas.offsetHeight - below_canvas.offsetHeight - 20;
     scale = (bw < bh ? bw : bh) / 19;
-    scale = scale > MIN_SCALE ? scale : MIN_SCALE;
-    canvas.width = scale * 19;
-    canvas.height = scale * 19;
+    scale = MIN_SCALE < scale ? scale : MIN_SCALE;
+    canvas.height = canvas.width = scale * 19;
     changeScale();
     drawBackGround();
     drawOrdersImm();
@@ -269,6 +267,7 @@ const calcPointed = e => {
 const above_canvas = document.getElementById("above_canvas");
 const below_canvas = document.getElementById("below_canvas");
 
+const canvas_parent = document.getElementById("canvas_parent");
 const canvas = document.getElementById("canvas");
 const shuffle_button = document.getElementById("shuffle_button");
 
