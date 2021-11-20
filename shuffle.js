@@ -17,12 +17,12 @@ let attend = [true, true, true, true, true, false, false];
 let population = 0;
 
 // 順番を格納する配列
-let orders_num = [];
+let orders_num = [0];
 
 let pointed = -1;
 
 // グローバルのイテレータ変数
-let g_itr;
+let g_itr = 0;
 
 let running = false;
 
