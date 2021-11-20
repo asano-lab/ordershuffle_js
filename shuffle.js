@@ -216,8 +216,8 @@ const setDisabledAll = b => {
 
 // 全員欠席なら真を返す
 const noPresenter = () => {
-    for (let i = 0; i < MAX_POPULATION; i++) {
-        if (attend[i]) {
+    for (const flag of attend) {
+        if (flag) {
             return false;
         }
     }
