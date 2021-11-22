@@ -154,7 +154,7 @@ const drawTableAndOrder = (table_num, io) => {
         }
     }
     ctx.fillRect(coo_siz[table_num][0], coo_siz[table_num][1], coo_siz[table_num][2], coo_siz[table_num][3]);
-    if (orders_num.includes(table_num)) {
+    if (orders_num.includes(table_num) && population) {
         const coo = txt_coo[table_num];
         ctx.fillStyle = "rgb(200, 0, 0)";
         ctx.fillText(orders_num.indexOf(table_num) + 1, coo[0], coo[1]);
