@@ -75,6 +75,7 @@ input[type="number"]{
     padding: 0 0.5rem;
     border: 1px solid #495057;
     height: 3rem;
+    height: calc(3rem - 2px);
     width: 12rem;
     border-radius: 0.25rem;
     transition: color .15s ease-in-out,
