@@ -49,10 +49,18 @@ input[type="button"]{
         border-color .15s ease-in-out,
         box-shadow .15s ease-in-out;
 }
+#shuffleBtn{
+    color: #c7243a;
+    border: 1px solid #c7243a;
+}
 input[type="button"]:hover{
     background-color: #0d6efd;
     color: #ffffff;
     box-shadow: 1px 1px 3px 1px #848f9c;
+}
+#shuffleBtn:hover{
+    background-color: #c7243a;
+    color: #ffffff;
 }
 input[type="button"]::before{
     content: "\f074";
