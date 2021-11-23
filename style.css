@@ -96,6 +96,7 @@ input[type="number"]:focus{
     height: calc(100vh - 7rem - 2px);
     box-shadow: 2px 2px 6px 1px #495057;
     margin: 1rem;
+    overflow: auto;
 }
 .desk{
     margin: 0.5rem;
@@ -106,6 +107,8 @@ input[type="number"]:focus{
     transition: color .15s ease-in-out,
         background-color .15s ease-in-out,
         box-shadow .15s ease-in-out;
+    min-width: 4rem;
+    min-height: 4rem;
 }
 .desk div{
     color: #c7243a;
