@@ -1,4 +1,4 @@
-# ordershuffle_js CSS+HTML版 （canva不使用）
+# ordershuffle_js CSS+HTML版 （canvas不使用）
 
 アサノ研（2021年現在の机配置）で、発表順を決めるWebアプリです。
 
