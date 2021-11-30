@@ -37,8 +37,8 @@ const doShuffle = function () {
     let seedInput = document.getElementById("seed");
     if (seedInput.value != "") {
         seed = seedInput.value;
+        document.getElementById("seed").setAttribute("placeholder", seed);
     }
-    console.log(seed);
     const random = new Random(seed);
     //modern Fisher-Yates shuffle algorithm
     for (let i = presenters.length; 1 < i; i--) {
