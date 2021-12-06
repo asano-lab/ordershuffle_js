@@ -3,13 +3,51 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>インデックス</title>
+    <title>発表の順番決め</title>
+    <script src="./modal.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-color: wheat;
+            font-family: sans-serif;
+        }
+        main {
+            box-sizing: border-box;
+            max-width: 800px;
+            min-height: 100vh;
+            margin: 0 auto;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            padding: 1em;
+            box-shadow: 1px 1px 3px 1px gray;
+            background-color: white;
+        }
+        #modalWin {
+            width: 30vw;
+            height: 30vh;
+            border: 1px solid gray;
+            background-color: white;
+            border-radius: 0.5em;
+            box-shadow: 1px 1px 3px 1px gray;
+            text-align: center;
+        }
+        pre{
+            overflow-x: auto;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>インデックス</h1>
-    <a href="./no_canvas.html">キャンバスなし</a><br>
-    <a href="./use_canvas.html">キャンバスあり</a>
+    <main>
+        <h1>発表の順番決め</h1>
+        <p>
+            <ul>
+                <li><a href="./no_canvas.html">キャンバスなし</a></li>
+                <li><a href="./use_canvas.html">キャンバスあり</a></li>
+            </ul>
+        </p>
+    </main>
 </body>
 
 </html>
