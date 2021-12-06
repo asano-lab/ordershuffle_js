@@ -11,6 +11,7 @@
             margin: 0;
             background-color: wheat;
             font-family: sans-serif;
+            font-family: "Arial", "Yu Gothic", "Helvetica", "Meiryo", sans-serif;
         }
         main {
             box-sizing: border-box;
@@ -19,21 +20,52 @@
             margin: 0 auto;
             border-left: 1px solid gray;
             border-right: 1px solid gray;
-            padding: 1em;
+            padding: 1rem;
             box-shadow: 1px 1px 3px 1px gray;
             background-color: white;
         }
+        h1{
+            font-size: 2rem;
+        }
+        nav ul{
+            display: flex;
+            padding: 0;
+        }
+        nav ul li{
+            font-size: 1.25rem;
+            list-style: none;
+            display: block;
+            flex: 1 1 auto;
+            margin: 1rem;
+            border-radius: 0.5rem;
+            background-color: lightgreen;
+            text-align: center;
+            transition: color .15s ease-in-out,
+                background-color .15s ease-in-out,
+                border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out;
+        }
+        nav ul li:hover{
+            box-shadow: 1px 1px 3px 1px gray;
+        }
+        nav ul li a{
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
+
 <body>
     <main>
         <h1>発表の順番決め</h1>
-        <p>
-        <ul>
-            <li><a href="./no_canvas.html">キャンバスなし</a></li>
-            <li><a href="./use_canvas.html">キャンバスあり</a></li>
-        </ul>
-        </p>
+        <nav>
+            <ul>
+                <li><a href="./no_canvas.html">キャンバスなし</a></li>
+                <li><a href="./use_canvas.html">キャンバスあり</a></li>
+            </ul>
+        </nav>
     </main>
 </body>
 
