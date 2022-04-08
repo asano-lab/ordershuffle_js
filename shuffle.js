@@ -72,27 +72,18 @@ const changeScale = () => {
         [scale * 9.6, scale * 7, scale * 3, scale * 5]
     ];
 
+    txt_coo = [];
+
     // 長方形の右下の座標を計算し, 配列に追加
     for (let i of coo_siz) {
         i.push(i[0] + i[2], i[1] + i[3]);
+        txt_coo.push([i[0] + i[2] / 2, i[1] + i[3] * 0.5 + scale * 0.5]);
     }
 
-    // テキストの位置
-    txt_coo = [
-        [scale, scale * 3],
-        [scale, scale * 9],
-        [scale, scale * 15],
-        [scale * 6, scale * 18],
-        [scale * 12, scale * 18],
-        [scale * 17, scale * 9],
-        [scale * 17, scale * 3],
-        [scale * 7.45, scale * 4.8],
-        [scale * 10.65, scale * 4.8],
-        [scale * 10.65, scale * 10]
-    ];
-
-    // フォントは一度だけ指定
-    ctx.font = String(scale * 1.6) + "px serif"
+    // フォント指定
+    ctx.font = String(scale * 1.6) + "px serif";
+    // 文字列は中央揃え
+    ctx.textAlign = "center";
 }
 
 // 背景描画
