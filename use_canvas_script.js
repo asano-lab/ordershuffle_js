@@ -195,8 +195,7 @@ const onShuffleClick = () => {
     const random = new Random(seed_value.value);
 
     // 人数のカウントと出席者の取得
-    let attendees = getAttendees();
-    console.log(attendees);
+    const attendees = getAttendees();
 
     // ランダムに順番を決める
     orders_num = [];
@@ -395,11 +394,6 @@ all_absent_button.addEventListener("click", () => {
 // B4のみ
 b4_button.addEventListener("click", () => {
     const b4_indices = [3, 4, 5, 10];
-    let b4_set = new Set(b4_indices);
-    let b4_set2 = new Set([4, 5, 10, 3, 5]);
-    console.log(b4_set);
-    console.log(b4_set2);
-    console.log(new Set([...b4_set].filter(e => (!b4_set2.has(e)))));
     if (population && !confirm("順番をリセットしますか?")) {
         return;
     }
