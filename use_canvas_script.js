@@ -402,7 +402,6 @@ b4_button.addEventListener("click", () => {
     if (difSet(b4_indices, attendees).size === 0 && difSet(attendees, b4_indices).size === 0) {
         return;
     }
-    console.log();
     if (population && !confirm("順番をリセットしますか?")) {
         return;
     }
