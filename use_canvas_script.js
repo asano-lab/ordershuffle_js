@@ -287,6 +287,7 @@ const seed_value = document.getElementById("seed_value");
 
 const all_attend_button = document.getElementById("all_attend_button");
 const all_absent_button = document.getElementById("all_absent_button");
+const b4_button = document.getElementById("b4_button");
 
 // シャッフルボタンのクリック時動作
 shuffle_button.addEventListener("click", onShuffleClick);
@@ -381,6 +382,20 @@ all_attend_button.addEventListener("click", () => {
 all_absent_button.addEventListener("click", () => {
     setAttendAll(false);
     shuffle_button.disabled = true;
+});
+
+// B4のみ
+b4_button.addEventListener("click", () => {
+    b4_indices = [3, 4, 5, 10];
+    if (population && !confirm("順番をリセットしますか?")) {
+        return;
+    }
+    for (let i = 0; i < MAX_POPULATION; i++) {
+        attend[i] = b4_indices.includes(i);
+    }
+    initOrder();
+    drawBackGround();
+    shuffle_button.disabled = false;
 });
 
 onManualSeedClick();
