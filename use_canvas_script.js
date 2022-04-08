@@ -165,14 +165,12 @@ const drawTableAndOrder = (table_num, io) => {
     }
 }
 
-// 人数のカウントと出席者の取得
+// 出席者の取得
 const getAttendees = () => {
-    population = 0;
     let attendees = [];
 
     for (i = 0; i < MAX_POPULATION; i++) {
         if (attend[i]) {
-            population++;
             attendees.push(i);
         }
     }
@@ -196,6 +194,7 @@ const onShuffleClick = () => {
 
     // 人数のカウントと出席者の取得
     const attendees = getAttendees();
+    population = attendees.length;
 
     // ランダムに順番を決める
     orders_num = [];
@@ -280,6 +279,11 @@ const calcPointed = e => {
 const onManualSeedClick = () => {
     manual_seed_flag = manual_seed.classList.contains('active');
     seed_value.disabled = !manual_seed_flag;
+}
+
+// 差集合の計算
+const difSet = (A, B) => {
+    return new Set([...A].filter(e => (!B.has(e))))
 }
 
 const above_canvas = document.getElementById("above_canvas");
@@ -393,12 +397,17 @@ all_absent_button.addEventListener("click", () => {
 
 // B4のみ
 b4_button.addEventListener("click", () => {
-    const b4_indices = [3, 4, 5, 10];
+    const b4_indices = new Set([3, 4, 5, 10]);
+    const attendees = new Set(getAttendees());
+    if (difSet(b4_indices, attendees).size === 0 && difSet(attendees, b4_indices).size === 0) {
+        return;
+    }
+    console.log();
     if (population && !confirm("順番をリセットしますか?")) {
         return;
     }
     for (let i = 0; i < MAX_POPULATION; i++) {
-        attend[i] = b4_indices.includes(i);
+        attend[i] = b4_indices.has(i);
     }
     initOrder();
     drawBackGround();
