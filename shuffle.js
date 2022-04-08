@@ -1,4 +1,4 @@
-const MAX_POPULATION = 8;
+const MAX_POPULATION = 9;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
 
@@ -12,7 +12,7 @@ let coo_siz = [[0]];
 // テキストの位置
 let txt_coo = [[0]];
 
-let attend = [true, true, true, true, true, false, false, true];
+let attend = [true, true, true, true, true, false, false, true, true];
 
 let population = 0;
 
@@ -58,6 +58,7 @@ class Random {
 // スケールの変更
 const changeScale = () => {
     // 机の位置と大きさ
+    // 位置は長方形の左上の座標
     coo_siz = [
         [0, 0, scale * 3, scale * 5],
         [0, scale * 6, scale * 3, scale * 5],
@@ -66,13 +67,14 @@ const changeScale = () => {
         [scale * 10, scale * 16, scale * 5, scale * 3],
         [scale * 16, scale * 6, scale * 3, scale * 5],
         [scale * 16, 0, scale * 3, scale * 5],
-        [scale * 9.6, scale * 7, scale * 3, scale * 5]
+        [scale * 9.6, scale * 7, scale * 3, scale * 5],
+        [scale * 9.6, scale * 1.8, scale * 3, scale * 5]
     ];
 
+    // 長方形の右下の座標を計算し, 配列に追加
     for (let i of coo_siz) {
         i.push(i[0] + i[2], i[1] + i[3]);
     }
-    console.log(coo_siz);
 
     // テキストの位置
     txt_coo = [
@@ -83,7 +85,8 @@ const changeScale = () => {
         [scale * 12, scale * 18],
         [scale * 17, scale * 9],
         [scale * 17, scale * 3],
-        [scale * 11, scale * 11]
+        [scale * 10.65, scale * 10],
+        [scale * 10.65, scale * 4.8]
     ];
 
     // フォントは一度だけ指定
