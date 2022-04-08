@@ -1,4 +1,4 @@
-const MAX_POPULATION = 10;
+const MAX_POPULATION = 11;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
 
@@ -12,7 +12,7 @@ let coo_siz = [[0]];
 // テキストの位置
 let txt_coo = [[0]];
 
-let attend = [true, true, true, true, true, false, false, true, true, true];
+let attend = [true, true, true, true, true, true, true, false, false, false, true];
 
 let population = 0;
 
@@ -68,6 +68,7 @@ const changeScale = () => {
         [scale * 16, scale * 6, scale * 3, scale * 5],
         [scale * 16, 0, scale * 3, scale * 5],
         [scale * 6.4, scale * 1.8, scale * 3, scale * 5],
+        [scale * 6.4, scale * 7, scale * 3, scale * 5],
         [scale * 9.6, scale * 1.8, scale * 3, scale * 5],
         [scale * 9.6, scale * 7, scale * 3, scale * 5]
     ];
