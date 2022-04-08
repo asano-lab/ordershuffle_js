@@ -165,6 +165,20 @@ const drawTableAndOrder = (table_num, io) => {
     }
 }
 
+// 人数のカウントと出席者の取得
+const getAttendees = () => {
+    population = 0;
+    let attendees = [];
+
+    for (i = 0; i < MAX_POPULATION; i++) {
+        if (attend[i]) {
+            population++;
+            attendees.push(i);
+        }
+    }
+    return attendees;
+}
+
 // シャッフルボタン押下時に実行する関数
 const onShuffleClick = () => {
     running = true;
@@ -181,15 +195,8 @@ const onShuffleClick = () => {
     const random = new Random(seed_value.value);
 
     // 人数のカウントと出席者の取得
-    population = 0;
-    let attendees = [];
-
-    for (i = 0; i < MAX_POPULATION; i++) {
-        if (attend[i]) {
-            population++;
-            attendees.push(i);
-        }
-    }
+    let attendees = getAttendees();
+    console.log(attendees);
 
     // ランダムに順番を決める
     orders_num = [];
@@ -213,6 +220,7 @@ const setDisabledAll = b => {
     manual_seed.disabled = b;
     all_attend_button.disabled = b;
     all_absent_button.disabled = b;
+    b4_button.disabled = b;
     // シードの入力欄は例外
     if (manual_seed_flag) {
         seed_value.disabled = b;
@@ -386,7 +394,12 @@ all_absent_button.addEventListener("click", () => {
 
 // B4のみ
 b4_button.addEventListener("click", () => {
-    b4_indices = [3, 4, 5, 10];
+    const b4_indices = [3, 4, 5, 10];
+    let b4_set = new Set(b4_indices);
+    let b4_set2 = new Set([4, 5, 10, 3, 5]);
+    console.log(b4_set);
+    console.log(b4_set2);
+    console.log(new Set([...b4_set].filter(e => (!b4_set2.has(e)))));
     if (population && !confirm("順番をリセットしますか?")) {
         return;
     }
