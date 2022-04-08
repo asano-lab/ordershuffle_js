@@ -59,15 +59,20 @@ class Random {
 const changeScale = () => {
     // 机の位置と大きさ
     coo_siz = [
-        [0, 0, scale * 3, scale * 5, scale * 3, scale * 5],
-        [0, scale * 6, scale * 3, scale * 5, scale * 3, scale * 11],
-        [0, scale * 12, scale * 3, scale * 5, scale * 3, scale * 17],
-        [scale * 4, scale * 16, scale * 5, scale * 3, scale * 9, scale * 19],
-        [scale * 10, scale * 16, scale * 5, scale * 3, scale * 15, scale * 19],
-        [scale * 16, scale * 6, scale * 3, scale * 5, scale * 19, scale * 11],
-        [scale * 16, 0, scale * 3, scale * 5, scale * 19, scale * 5],
-        [scale * 9.6, scale * 7, scale * 3, scale * 5, scale * 12.6, scale * 12]
+        [0, 0, scale * 3, scale * 5],
+        [0, scale * 6, scale * 3, scale * 5],
+        [0, scale * 12, scale * 3, scale * 5],
+        [scale * 4, scale * 16, scale * 5, scale * 3],
+        [scale * 10, scale * 16, scale * 5, scale * 3],
+        [scale * 16, scale * 6, scale * 3, scale * 5],
+        [scale * 16, 0, scale * 3, scale * 5],
+        [scale * 9.6, scale * 7, scale * 3, scale * 5]
     ];
+
+    for (let i of coo_siz) {
+        i.push(i[0] + i[2], i[1] + i[3]);
+    }
+    console.log(coo_siz);
 
     // テキストの位置
     txt_coo = [
