@@ -1,4 +1,4 @@
-const MAX_POPULATION = 7;
+const MAX_POPULATION = 8;
 
 const PC_FLAG = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android.*Mobile)/i);
 
@@ -12,7 +12,7 @@ let coo_siz = [[0]];
 // テキストの位置
 let txt_coo = [[0]];
 
-let attend = [true, true, true, true, true, false, false];
+let attend = [true, true, true, true, true, false, false, true];
 
 let population = 0;
 
@@ -65,7 +65,8 @@ const changeScale = () => {
         [scale * 4, scale * 16, scale * 5, scale * 3, scale * 9, scale * 19],
         [scale * 10, scale * 16, scale * 5, scale * 3, scale * 15, scale * 19],
         [scale * 16, scale * 6, scale * 3, scale * 5, scale * 19, scale * 11],
-        [scale * 16, 0, scale * 3, scale * 5, scale * 19, scale * 5]
+        [scale * 16, 0, scale * 3, scale * 5, scale * 19, scale * 5],
+        [scale * 9.6, scale * 7, scale * 3, scale * 5, scale * 12.6, scale * 12]
     ];
 
     // テキストの位置
@@ -76,7 +77,8 @@ const changeScale = () => {
         [scale * 6, scale * 18],
         [scale * 12, scale * 18],
         [scale * 17, scale * 9],
-        [scale * 17, scale * 3]
+        [scale * 17, scale * 3],
+        [scale * 11, scale * 11]
     ];
 
     // フォントは一度だけ指定
