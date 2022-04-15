@@ -63,12 +63,20 @@ const deselectAll = function () {
         desk.classList.remove("present");
     }
 }
+const selectB4 = function(){
+    deselectAll();
+    const desks = document.getElementsByClassName("b4");
+    for (const desk of desks) {
+        desk.classList.add("present");
+    }
+}
 
 const init = function () {
     document.getElementById("seed").setAttribute("placeholder", seed);
     document.getElementById("shuffleBtn").addEventListener("click", doShuffle);
     document.getElementById("allBtn").addEventListener("click", selectAll);
     document.getElementById("noBtn").addEventListener("click", deselectAll);
+    document.getElementById("b4Btn").addEventListener("click", selectB4);
     document.addEventListener("keyup", function (e) {
         if (e.key === "Enter") {
             doShuffle();
